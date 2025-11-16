@@ -57,6 +57,7 @@ export const TRANSLATIONS = {
       lastDonation: "آخر تبرع",
       notes: "ملاحظات",
       noResults: "لم يتم العثور على نتائج.",
+      noResultsHint: "حاول تعديل معايير البحث أو تحديث البيانات.",
     },
     footerContact: "اتصل بنا",
     footerRights: "© 2025 الهلال الأحمر الجزائري - سيدي بلعباس. كل الحقوق محفوظة.",
@@ -65,6 +66,9 @@ export const TRANSLATIONS = {
     male: "ذكر",
     female: "أنثى",
     whatsappContact: "تواصل معنا",
+    pageTitle: "قطرات أمل - بنك المتبرعين بالدم",
+    metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس، يهدف إلى تسجيل متبرعين جدد بالدم والبحث عن متبرعين متوافقين بكفاءة.",
+    callAction: "اتصل بالمتبرع",
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -92,6 +96,7 @@ export const TRANSLATIONS = {
       lastDonation: "Dernier don",
       notes: "Remarques",
       noResults: "Aucun résultat trouvé.",
+      noResultsHint: "Essayez de modifier vos critères de recherche ou d'actualiser les données.",
     },
     footerContact: "Nous contacter",
     footerRights: "© 2025 Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés.",
@@ -100,5 +105,8 @@ export const TRANSLATIONS = {
     male: "Homme",
     female: "Femme",
     whatsappContact: "Contactez-nous",
+    pageTitle: "Gouttes d’Espoir - Banque des donneurs",
+    metaDescription: "Un site web professionnel et moderne pour le Croissant-Rouge Algérien – Comité de Wilaya de Sidi Bel Abbès, visant à enregistrer de nouveaux donneurs de sang et à rechercher efficacement des donneurs compatibles.",
+    callAction: "Appeler le donneur",
   }
 };

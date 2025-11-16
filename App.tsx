@@ -15,8 +15,32 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Set document direction and language
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
+    
+    // Update meta tags and title for better SEO and immersion
+    const t = TRANSLATIONS[language];
+    document.title = t.pageTitle;
+    
+    const metaTags: { [key: string]: string } = {
+        'description': t.metaDescription,
+        'og:title': t.pageTitle,
+        'og:description': t.metaDescription,
+        'twitter:title': t.pageTitle,
+        'twitter:description': t.metaDescription
+    };
+
+    Object.entries(metaTags).forEach(([key, value]) => {
+        let element = key.startsWith('og:') || key.startsWith('twitter:')
+            ? document.querySelector(`meta[property="${key}"]`)
+            : document.querySelector(`meta[name="${key}"]`);
+        
+        if (element) {
+            element.setAttribute('content', value);
+        }
+    });
+
   }, [language]);
 
   const loadDonors = useCallback(async () => {

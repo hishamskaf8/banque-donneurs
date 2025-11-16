@@ -30,8 +30,6 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
             <FacebookIcon />
             <span>{t.whatsappContact}</span>
           </a>
-          <span>|</span>
-          <span>+213 (0) 123 456 789</span>
         </div>
         <p className="text-xs text-gray-400">{t.footerRights}</p>
       </div>

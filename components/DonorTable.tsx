@@ -3,6 +3,18 @@ import type { Donor, Language } from '../types';
 import { TRANSLATIONS } from '../constants';
 import LoadingSpinner from './LoadingSpinner';
 
+const PhoneIcon: React.FC = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+  </svg>
+);
+
+const SearchIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+);
+
 interface DonorTableProps {
   language: Language;
   donors: Donor[];
@@ -34,6 +46,14 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
     );
   }
 
+  const NoResultsView = () => (
+    <div className="flex flex-col items-center gap-2 text-gray-500">
+        <SearchIcon />
+        <p className="font-semibold text-lg">{t.table.noResults}</p>
+        <p>{t.table.noResultsHint}</p>
+    </div>
+  );
+
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
       <div className="p-4 border-b border-gray-200">
@@ -61,13 +81,20 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                 <td className="px-6 py-4 text-center font-bold text-[#C62828] w-24">{donor.bloodGroup}</td>
                 <td className="px-6 py-4">{translateGender(donor.gender)}</td>
                 <td className="px-6 py-4">{donor.wilaya}</td>
-                <td className="px-6 py-4">{donor.phone}</td>
+                <td className="px-6 py-4">
+                  <a href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} title={t.callAction} className="flex items-center gap-2 hover:text-red-700 transition-colors">
+                    <PhoneIcon />
+                    <span>{donor.phone}</span>
+                  </a>
+                </td>
                 <td className="px-6 py-4">{donor.lastDonation || 'N/A'}</td>
                 <td className="px-6 py-4 max-w-xs truncate">{donor.notes || 'N/A'}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={7} className="text-center py-8 text-gray-500">{t.table.noResults}</td>
+                <td colSpan={7} className="text-center py-16">
+                  <NoResultsView />
+                </td>
               </tr>
             )}
           </tbody>
@@ -81,7 +108,10 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
             <div className="flex justify-between items-start">
               <div>
                 <p className="font-bold text-lg text-gray-800">{donor.fullName}</p>
-                <p className="text-sm text-gray-500">{donor.phone}</p>
+                <a href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} title={t.callAction} className="text-sm text-gray-500 flex items-center gap-2 hover:text-red-700 transition-colors">
+                  <PhoneIcon />
+                  <span>{donor.phone}</span>
+                </a>
               </div>
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-red-100 text-[#C62828] rounded-full font-extrabold text-2xl">
                 {donor.bloodGroup}
@@ -96,7 +126,9 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
             </div>
           </div>
         )) : (
-          <div className="text-center py-8 text-gray-500">{t.table.noResults}</div>
+          <div className="text-center py-16">
+            <NoResultsView />
+          </div>
         )}
       </div>
 
