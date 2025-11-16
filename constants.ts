@@ -1,0 +1,104 @@
+export const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScaVCcBV32iBwj2qWnkh0Ds5IfLYyWroDnQfjjlzrsz3K6oiQ/viewform?usp=header';
+export const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmbM3HyrZZMS1ukgzdPH2Kx60iMQb8Je3Cuxl6EAZgzTEL6K31yO9h5qobj_RexjI0Ww9iojcL5QvF/pub?gid=1898439372&single=true&output=csv';
+
+export const WILAYAS_FR = [
+  "Adrar", "Chlef", "Laghouat", "Oum El Bouaghi", "Batna", "Béjaïa", "Biskra", "Béchar",
+  "Blida", "Bouira", "Tamanrasset", "Tébessa", "Tlemcen", "Tiaret", "Tizi Ouzou", "Alger",
+  "Djelfa", "Jijel", "Sétif", "Saïda", "Skikda", "Sidi Bel Abbès", "Annaba", "Guelma",
+  "Constantine", "Médéa", "Mostaganem", "M'Sila", "Mascara", "Ouargla", "Oran", "El Bayadh",
+  "Illizi", "Bordj Bou Arreridj", "Boumerdès", "El Tarf", "Tindouf", "Tissemsilt", "El Oued",
+  "Khenchela", "Souk Ahras", "Tipaza", "Mila", "Aïn Defla", "Naâma", "Aïn Témouchent",
+  "Ghardaïa", "Relizane"
+];
+
+export const WILAYAS_MAP_FR_TO_AR: { [key: string]: string } = {
+  "Adrar": "أدرار", "Chlef": "الشلف", "Laghouat": "الأغواط", "Oum El Bouaghi": "أم البواقي",
+  "Batna": "باتنة", "Béjaïa": "بجاية", "Biskra": "بسكرة", "Béchar": "بشار", "Blida": "البليدة",
+  "Bouira": "البويرة", "Tamanrasset": "تمنراست", "Tébessa": "تبسة", "Tlemcen": "تلمسان",
+  "Tiaret": "تيارت", "Tizi Ouzou": "تيزي وزو", "Alger": "الجزائر", "Djelfa": "الجلفة",
+  "Jijel": "جيجل", "Sétif": "سطيف", "Saïda": "سعيدة", "Skikda": "سكيكدة",
+  "Sidi Bel Abbès": "سيدي بلعباس", "Annaba": "عنابة", "Guelma": "قالمة", "Constantine": "قسنطينة",
+  "Médéa": "المدية", "Mostaganem": "مستغانم", "M'Sila": "المسيلة", "Mascara": "معسكر",
+  "Ouargla": "ورقلة", "Oran": "وهران", "El Bayadh": "البيض", "Illizi": "إليزي",
+  "Bordj Bou Arreridj": "برج بوعريريج", "Boumerdès": "بومرداس", "El Tarf": "الطارف",
+  "Tindouf": "تندوف", "Tissemsilt": "تيسمسيلت", "El Oued": "الوادي", "Khenchela": "خنشلة",
+  "Souk Ahras": "سوق أهراس", "Tipaza": "تيبازة", "Mila": "ميلة", "Aïn Defla": "عين الدفلى",
+  "Naâma": "النعامة", "Aïn Témouchent": "عين تموشنت", "Ghardaïa": "غرداية", "Relizane": "غليزان"
+};
+
+export const BLOOD_GROUPS = [
+  "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-",
+];
+
+export const TRANSLATIONS = {
+  ar: {
+    mainTitle: "الهلال الأحمر الجزائري",
+    subTitle: "اللجنة الولائية لولاية سيدي بلعباس",
+    registerButton: "تسجيل متبرع جديد",
+    languageSwitch: "Français",
+    searchTitle: "ابحث عن متبرع",
+    bloodGroup: "فصيلة الدم",
+    allBloodGroups: "كل الفصائل",
+    wilaya: "ولاية الإقامة",
+    allWilayas: "كل الولايات",
+    searchTerm: "الاسم / الهاتف",
+    searchPlaceholder: "ابحث بالاسم أو رقم الهاتف...",
+    searchNote: "ملاحظة: يمكنكم البحث عن متبرّع من خلال تعبئة خانة واحدة فقط أو أكثر مثل: الاسم، رقم الهاتف، الولاية، أو فصيلة الدم. ليس من الضروري تعبئة جميع الخانات.",
+    searchButton: "ابحث الآن",
+    refreshButton: "تحديث البيانات",
+    totalDonors: "إجمالي المتبرعين",
+    table: {
+      fullName: "الاسم الكامل",
+      dob: "تاريخ الميلاد",
+      gender: "الجنس",
+      bloodGroup: "فصيلة الدم",
+      wilaya: "ولاية الإقامة",
+      phone: "رقم الهاتف",
+      lastDonation: "آخر تبرع",
+      notes: "ملاحظات",
+      noResults: "لم يتم العثور على نتائج.",
+    },
+    footerContact: "اتصل بنا",
+    footerRights: "© 2025 الهلال الأحمر الجزائري - سيدي بلعباس. كل الحقوق محفوظة.",
+    fetchError: "حدث خطأ أثناء تحميل البيانات. يرجى المحاولة مرة أخرى.",
+    loading: "جار التحميل...",
+    male: "ذكر",
+    female: "أنثى",
+    whatsappContact: "تواصل معنا",
+  },
+  fr: {
+    mainTitle: "Croissant-Rouge Algérien",
+    subTitle: "Comité Wilaya de Sidi Bel Abbès",
+    registerButton: "Ajouter un donneur",
+    languageSwitch: "العربية",
+    searchTitle: "Rechercher un donneur",
+    bloodGroup: "Groupe sanguin",
+    allBloodGroups: "Tous les groupes",
+    wilaya: "Wilaya de résidence",
+    allWilayas: "Toutes les wilayas",
+    searchTerm: "Nom / Téléphone",
+    searchPlaceholder: "Rechercher par nom ou téléphone...",
+    searchNote: "Note : Vous pouvez rechercher un donneur en remplissant un seul champ ou plusieurs, tels que : nom, numéro de téléphone, wilaya ou groupe sanguin. Il n’est pas nécessaire de tout remplir.",
+    searchButton: "Rechercher",
+    refreshButton: "Actualiser les données",
+    totalDonors: "Total des donneurs",
+    table: {
+      fullName: "Nom complet",
+      dob: "Date de naissance",
+      gender: "Sexe",
+      bloodGroup: "Groupe sanguin",
+      wilaya: "Wilaya de résidence",
+      phone: "Numéro de téléphone",
+      lastDonation: "Dernier don",
+      notes: "Remarques",
+      noResults: "Aucun résultat trouvé.",
+    },
+    footerContact: "Nous contacter",
+    footerRights: "© 2025 Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés.",
+    fetchError: "Une erreur est survenue lors du chargement des données. Veuillez réessayer.",
+    loading: "Chargement...",
+    male: "Homme",
+    female: "Femme",
+    whatsappContact: "Contactez-nous",
+  }
+};
