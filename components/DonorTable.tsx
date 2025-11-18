@@ -102,7 +102,11 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                 <td className="px-6 py-4">{translateGender(donor.gender)}</td>
                 <td className="px-6 py-4">{donor.wilaya}</td>
                 <td className="px-6 py-4">
-                  <a href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} title={t.callAction} className="flex items-center gap-2 hover:text-red-700 transition-colors">
+                  <a 
+                    href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
+                    title={t.callAction} 
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 text-green-700 border border-green-200 rounded-lg font-bold hover:bg-green-100 transition-colors"
+                  >
                     <PhoneIcon />
                     <span>{donor.phone}</span>
                   </a>
@@ -126,9 +130,13 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
         {donors.length > 0 ? donors.map((donor, index) => (
           <div key={`${donor.phone}-${index}`} className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
             <div className="flex justify-between items-start">
-              <div>
-                <p className="font-bold text-lg text-gray-800">{donor.fullName}</p>
-                <a href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} title={t.callAction} className="text-sm text-gray-500 flex items-center gap-2 hover:text-red-700 transition-colors">
+              <div className="flex flex-col items-start">
+                <p className="font-bold text-lg text-gray-800 mb-1">{donor.fullName}</p>
+                <a 
+                  href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
+                  title={t.callAction} 
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-bold shadow-md hover:bg-green-700 transition-all transform hover:scale-105 mt-1"
+                >
                   <PhoneIcon />
                   <span>{donor.phone}</span>
                 </a>
