@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Donor, Language } from './types';
 import { TRANSLATIONS, BLOOD_GROUPS, WILAYAS_MAP_FR_TO_AR } from './constants';
@@ -13,6 +14,7 @@ const App: React.FC = () => {
   const [filteredDonors, setFilteredDonors] = useState<Donor[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   useEffect(() => {
     // Set document direction and language
@@ -49,6 +51,9 @@ const App: React.FC = () => {
     try {
       const donors = await fetchDonors();
       setAllDonors(donors);
+      // We don't need to setFilteredDonors here immediately for display 
+      // because we want to wait for user search, but we can initialize it 
+      // to ensure it has data when search happens.
       setFilteredDonors(donors);
     } catch (err) {
       setError(TRANSLATIONS[language].fetchError);
@@ -77,6 +82,8 @@ const App: React.FC = () => {
 
   const handleSearch = useCallback((filters: { bloodGroup: string; wilaya: string; searchTerm: string; }) => {
     const { bloodGroup, wilaya, searchTerm } = filters;
+    setHasSearched(true); // Mark that a search has been performed
+
     const lowercasedSearchTerm = searchTerm.toLowerCase().trim();
 
     const result = allDonors.filter(donor => {
@@ -121,8 +128,9 @@ const App: React.FC = () => {
         <DonorTable
           language={language}
           donors={filteredDonors}
-          totalDonors={allDonors.length}
+          totalDonors={filteredDonors.length} // Show count of filtered results
           isLoading={isLoading}
+          hasSearched={hasSearched}
         />
       </main>
       

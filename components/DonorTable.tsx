@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Donor, Language } from '../types';
 import { TRANSLATIONS } from '../constants';
@@ -15,14 +16,22 @@ const SearchIcon: React.FC = () => (
     </svg>
 );
 
+const BloodDropIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-200 mb-3" viewBox="0 0 20 20" fill="currentColor">
+      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" opacity="0.4" />
+      <path fillRule="evenodd" d="M10 3.5c0 2.5-4 6.5-4 9a4 4 0 108 0c0-2.5-4-6.5-4-9z" clipRule="evenodd" />
+    </svg>
+);
+
 interface DonorTableProps {
   language: Language;
   donors: Donor[];
   totalDonors: number;
   isLoading: boolean;
+  hasSearched: boolean;
 }
 
-const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, isLoading }) => {
+const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, isLoading, hasSearched }) => {
   const t = TRANSLATIONS[language];
 
   // Helper function to translate gender based on current language
@@ -39,10 +48,21 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
 
   if (isLoading) {
     return (
-        <div className="flex flex-col items-center justify-center p-10 bg-white rounded-2xl shadow-lg border border-gray-100">
+        <div className="flex flex-col items-center justify-center p-10 bg-white rounded-2xl shadow-lg border border-gray-100 min-h-[200px]">
             <LoadingSpinner />
             <p className="mt-4 text-gray-600">{t.loading}</p>
         </div>
+    );
+  }
+
+  // Show initial message if no search has been performed yet
+  if (!hasSearched) {
+    return (
+      <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl shadow-lg border border-gray-100 text-center min-h-[300px]">
+        <BloodDropIcon />
+        <h3 className="text-xl md:text-2xl font-bold text-gray-700 mb-2">{t.table.initialSearchMessage}</h3>
+        <p className="text-gray-500 max-w-md">{t.searchNote}</p>
+      </div>
     );
   }
 

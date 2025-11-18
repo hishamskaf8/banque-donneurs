@@ -1,3 +1,4 @@
+
 export const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScaVCcBV32iBwj2qWnkh0Ds5IfLYyWroDnQfjjlzrsz3K6oiQ/viewform?usp=header';
 export const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmbM3HyrZZMS1ukgzdPH2Kx60iMQb8Je3Cuxl6EAZgzTEL6K31yO9h5qobj_RexjI0Ww9iojcL5QvF/pub?gid=1898439372&single=true&output=csv';
 
@@ -58,6 +59,7 @@ export const TRANSLATIONS = {
       notes: "ملاحظات",
       noResults: "لم يتم العثور على نتائج.",
       noResultsHint: "حاول تعديل معايير البحث أو تحديث البيانات.",
+      initialSearchMessage: "ابحث عن احتياجك الدموي",
     },
     footerContact: "اتصل بنا",
     footerRights: "© 2025 الهلال الأحمر الجزائري - سيدي بلعباس. كل الحقوق محفوظة.",
@@ -97,6 +99,7 @@ export const TRANSLATIONS = {
       notes: "Remarques",
       noResults: "Aucun résultat trouvé.",
       noResultsHint: "Essayez de modifier vos critères de recherche ou d'actualiser les données.",
+      initialSearchMessage: "Recherchez votre besoin en sang",
     },
     footerContact: "Nous contacter",
     footerRights: "© 2025 Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés.",
