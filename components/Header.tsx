@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, GOOGLE_FORM_URL } from '../constants';
@@ -61,10 +62,10 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
             className={`transition-all duration-300 drop-shadow-md ${isScrolled ? 'w-12 h-12' : 'w-16 h-16'}`}
           />
           <div className="flex flex-col">
-            <h1 className="text-lg md:text-2xl font-black text-[#0F172A] leading-none tracking-tight group-hover:text-[#D61F1F] transition-colors font-display">
+            <h1 className="text-lg md:text-xl font-bold text-[#0F172A] leading-none tracking-tight group-hover:text-[#D61F1F] transition-colors font-display">
               {t.mainTitle}
             </h1>
-            <p className="text-xs md:text-sm text-slate-600 font-bold tracking-wide mt-1">
+            <p className="text-xs md:text-sm text-slate-600 font-medium tracking-wide mt-1">
               {t.subTitle}
             </p>
           </div>
@@ -74,11 +75,12 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
         <div className="flex items-center gap-2 md:gap-4">
           <button
             onClick={toggleLanguage}
-            className="hidden md:inline-flex items-center justify-center px-4 py-2 text-xs font-black uppercase tracking-widest text-[#0F172A] bg-white border-2 border-slate-200 rounded-full hover:bg-slate-50 hover:text-[#D61F1F] hover:border-[#D61F1F] transition-all duration-200"
+            className="hidden md:inline-flex items-center justify-center px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#0F172A] bg-white border-2 border-slate-200 rounded-full hover:bg-slate-50 hover:text-[#D61F1F] hover:border-[#D61F1F] transition-all duration-200"
           >
             {t.languageSwitch}
           </button>
           
+          {/* Desktop Register Button */}
           <a
             href={GOOGLE_FORM_URL}
             target="_blank"
@@ -91,16 +93,17 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
             <span>{t.registerButton}</span>
           </a>
           
-          {/* Mobile Register Button */}
+          {/* Mobile Register Button - Now Pill Shaped with Text */}
            <a
             href={GOOGLE_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="sm:hidden p-2.5 text-white bg-[#D61F1F] rounded-full shadow-md hover:bg-[#B91C1C] transition-all"
+            className="sm:hidden px-4 py-2 text-xs font-bold text-white bg-[#D61F1F] rounded-full shadow-md hover:bg-[#B91C1C] transition-all flex items-center gap-1.5"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
             </svg>
+            <span>{t.registerButton}</span>
           </a>
 
           {/* 3-dots Menu */}

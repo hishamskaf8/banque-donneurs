@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, ABOUT_CONTENT } from '../constants';
@@ -27,7 +28,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 bg-white sticky top-0 z-10">
-          <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">{t.aboutApp}</h2>
+          <h2 className="text-xl font-bold text-[#0F172A] tracking-tight">{t.aboutApp}</h2>
           <button 
             onClick={onClose}
             className="text-slate-400 hover:text-[#D61F1F] transition-colors p-2 rounded-full hover:bg-red-50"
@@ -42,7 +43,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         <div className="p-8 overflow-y-auto custom-scrollbar bg-white">
           {content.map((section, index) => (
             <div key={index} className="mb-10 last:mb-0">
-              <h3 className="text-lg font-black text-[#D61F1F] mb-4 inline-flex items-center gap-2 uppercase tracking-wide">
+              <h3 className="text-lg font-bold text-[#D61F1F] mb-4 inline-flex items-center gap-2 uppercase tracking-wide">
                 <span className="w-3 h-3 rounded-none bg-[#D61F1F]"></span>
                 {section.title}
               </h3>

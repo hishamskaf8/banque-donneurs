@@ -58,7 +58,7 @@ export const ABOUT_CONTENT = {
         "Les utilisateurs doivent fournir des informations personnelles et médicales exactes pour assurer une gestion sûre et efficace des dons.",
         "L’application est destinée uniquement à des dons de sang volontaires et non commerciaux à Sidi Bel Abbès.",
         "Les données personnelles collectées via l’application sont utilisées exclusivement pour la coordination des dons et ne seront pas partagées avec des tiers sans consentement.",
-        "En utilisant l’application, les utilisateurs s’engagent à respecter les directives locales relatives à l’éligibilité au don. ",
+        "En utilisant l’application, les utilisateurs s’engagent à respecter les directives locales relatives à l’éligibilité au don.",
         "Les utilisateurs peuvent demander la suppression de leurs données personnelles à tout moment en contactant le support."
       ]
     },
@@ -84,6 +84,10 @@ export const ABOUT_CONTENT = {
     {
       title: "الغرض والمهمة",
       content: "تم تصميم هذا التطبيق لتسهيل عملية التبرع بالدم في سيدي بلعباس، الجزائر، من خلال ربط المتبرعين المحليين بالمحتاجين. بالتعاون مع الهلال الأحمر الجزائري – لجنة سيدي بلعباس، يهدف التطبيق إلى إنقاذ الأرواح من خلال تسهيل عملية التبرع وتوفير الدم داخل المجتمع المحلي."
+    },
+    {
+      title: "تطوير التطبيق",
+      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل سكاف هشام لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
     },
     {
       title: "أهم الميزات",
@@ -248,7 +252,7 @@ export const TRANSLATIONS = {
       initialSearchMessage: "Recherchez votre besoin en sang",
     },
     footerContact: "Nous contacter",
-    footerRights: "© 2025 Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés.",
+    footerRights: "Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés 2025 ©",
     fetchError: "Une erreur est survenue lors du chargement des données. Veuillez réessayer.",
     loading: "Chargement...",
     male: "Homme",

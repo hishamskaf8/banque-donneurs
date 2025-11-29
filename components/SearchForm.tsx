@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, WILAYAS_FR } from '../constants';
@@ -30,7 +31,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
             
             <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-black text-[#0F172A] flex items-center gap-3 mb-3">
+                    <h2 className="text-2xl font-bold text-[#0F172A] flex items-center gap-3 mb-3">
                         <span className="p-2 bg-red-600 text-white rounded-lg shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -38,7 +39,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                         </span>
                         {t.searchTitle}
                     </h2>
-                    <p className="text-sm text-slate-600 font-bold leading-relaxed max-w-2xl">
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed max-w-2xl">
                         {t.searchNote}
                     </p>
                 </div>
@@ -48,7 +49,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                 
                 {/* Blood Group Filter */}
                 <div className="lg:col-span-3 space-y-2">
-                    <label htmlFor="bloodGroup" className="text-xs font-black uppercase tracking-wider text-slate-800">{t.bloodGroup}</label>
+                    <label htmlFor="bloodGroup" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.bloodGroup}</label>
                     <div className="relative">
                         <select
                             id="bloodGroup"
@@ -67,7 +68,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
 
                 {/* Wilaya Filter */}
                 <div className="lg:col-span-4 space-y-2">
-                    <label htmlFor="wilaya" className="text-xs font-black uppercase tracking-wider text-slate-800">{t.wilaya}</label>
+                    <label htmlFor="wilaya" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.wilaya}</label>
                     <div className="relative">
                         <select
                             id="wilaya"
@@ -90,7 +91,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
 
                 {/* Search Term Input */}
                 <div className="lg:col-span-3 space-y-2">
-                    <label htmlFor="searchTerm" className="text-xs font-black uppercase tracking-wider text-slate-800">{t.searchTerm}</label>
+                    <label htmlFor="searchTerm" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.searchTerm}</label>
                     <input
                         id="searchTerm"
                         type="text"
@@ -105,7 +106,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                 <div className="lg:col-span-2 flex gap-3">
                     <button
                         type="submit"
-                        className="flex-grow w-full px-6 py-3.5 text-sm font-black text-white bg-[#D61F1F] hover:bg-[#B91C1C] rounded-lg shadow-lg hover:shadow-xl focus:outline-none transition-all duration-200 transform active:scale-95 border border-[#B91C1C]"
+                        className="flex-grow w-full px-6 py-3.5 text-sm font-bold text-white bg-[#D61F1F] hover:bg-[#B91C1C] rounded-lg shadow-lg hover:shadow-xl focus:outline-none transition-all duration-200 transform active:scale-95 border border-[#B91C1C]"
                     >
                         {t.searchButton}
                     </button>

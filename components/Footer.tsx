@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS } from '../constants';
@@ -20,13 +21,12 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
     <footer className="bg-[#0F172A] text-slate-300 mt-auto border-t-4 border-[#D61F1F]">
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="flex flex-col items-center">
-            <h4 className="font-black text-2xl mb-8 text-white tracking-tight">{t.footerContact}</h4>
             
             <a
                 href="https://web.facebook.com/profile.php?id=61571702909168"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-8 py-3.5 bg-white text-[#0F172A] rounded-full hover:bg-[#D61F1F] hover:text-white transition-all duration-200 mb-12 font-bold shadow-lg"
+                className="flex items-center gap-3 px-8 py-3.5 bg-white text-[#0F172A] rounded-full hover:bg-[#1877F2] hover:text-white transition-all duration-200 mb-12 font-bold shadow-lg"
             >
                 <FacebookIcon />
                 <span className="tracking-wide">{t.whatsappContact}</span>

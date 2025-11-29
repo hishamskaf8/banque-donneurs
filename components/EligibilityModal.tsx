@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, ELIGIBILITY_CONTENT } from '../constants';
@@ -27,7 +28,7 @@ const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, la
         
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 bg-white sticky top-0 z-10">
-          <h2 className="text-2xl font-black text-[#0F172A] flex items-center gap-3 tracking-tight">
+          <h2 className="text-xl font-bold text-[#0F172A] flex items-center gap-3 tracking-tight">
             <span className="p-2 bg-red-100 rounded-lg text-[#D61F1F]">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,7 +51,7 @@ const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, la
           {content.map((section, index) => (
             <div key={index} className="mb-8 last:mb-0 p-6 bg-slate-50 rounded-xl border-2 border-slate-100">
               {section.title && (
-                <h3 className="text-lg font-black text-[#D61F1F] mb-4 uppercase tracking-wide">
+                <h3 className="text-lg font-bold text-[#D61F1F] mb-4 uppercase tracking-wide">
                     {section.title}
                 </h3>
               )}
