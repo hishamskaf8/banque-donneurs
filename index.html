@@ -5,51 +5,102 @@
     <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gouttes d’Espoir — Banque des donneurs</title>
-    <meta name="description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès, aimed at registering new blood donors and allowing users to search for compatible blood donors efficiently." />
+    <meta name="description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Gouttes d’Espoir — Banque des donneurs" />
-    <meta property="og:description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès, aimed at registering new blood donors and allowing users to search for compatible blood donors efficiently." />
+    <meta property="og:description" content="Sauvez des vies à Sidi Bel Abbès." />
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary" />
     <meta property="twitter:title" content="Gouttes d’Espoir — Banque des donneurs" />
-    <meta property="twitter:description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès, aimed at registering new blood donors and allowing users to search for compatible blood donors efficiently." />
+    <meta property="twitter:description" content="Sauvez des vies à Sidi Bel Abbès." />
     <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
     
-    <!-- Fonts: Inter for Latin, Tajawal for Arabic -->
+    <!-- Fonts: Outfit (Latin) & Cairo (Arabic) for a Premium Geometric Look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
-        --font-latin: 'Inter', sans-serif;
-        --font-arabic: 'Tajawal', sans-serif;
+        --font-latin: 'Outfit', sans-serif;
+        --font-arabic: 'Cairo', sans-serif;
+        
+        /* "Vitality & Precision" Palette - Vivid & Sharp */
+        --brand-red: #D61F1F;      /* Vivid Red - High Energy */
+        --brand-red-light: #FF4545; /* Luminous Red - Hope */
+        --brand-dark: #0F172A;     /* Deep Navy - Structure */
+        --brand-accent: #0D9488;   /* Sharp Teal - Balance */
+        --brand-bg: #FFFFFF;       /* Pure White - Purity */
       }
+      
       body {
         font-family: var(--font-latin);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--brand-bg);
+        overflow-x: hidden;
+        color: var(--brand-dark);
       }
+      
+      /* Crisp Tech Pattern - No Fade */
+      .bg-grid-pattern {
+        background-image: 
+          linear-gradient(to right, #F1F5F9 1px, transparent 1px),
+          linear-gradient(to bottom, #F1F5F9 1px, transparent 1px);
+        background-size: 40px 40px;
+        background-color: #FFFFFF;
+      }
+
+      /* Arabic Typography */
       html[lang="ar"] body {
         font-family: var(--font-arabic);
       }
+
+      /* French Typography Enhancements */
+      html[lang="fr"] body {
+        font-family: var(--font-latin);
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+      }
       
-      /* Simple scrollbar styling for a more modern look */
+      html[lang="fr"] h1, html[lang="fr"] h2, html[lang="fr"] h3 {
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      
+      /* Scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f5f9;
+        background: #F8FAFC;
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
+        background: #CBD5E1;
+        border-radius: 5px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
+        background: #94A3B8;
+      }
+
+      /* Selection */
+      ::selection {
+        background-color: var(--brand-red);
+        color: white;
+      }
+
+      /* Sharp Animations */
+      @keyframes pop-in {
+        0% { opacity: 0; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      .animate-pop {
+        animation: pop-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
     </style>
   <script type="importmap">

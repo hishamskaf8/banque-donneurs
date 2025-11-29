@@ -1,48 +1,76 @@
 import { CSV_URL } from '../constants';
 import type { Donor } from '../types';
 
-// A more robust CSV parser specifically for Google Sheets export format.
+// Robust CSV parser to handle commas within quoted fields
 const parseCSV = (csvText: string): string[][] => {
-  // Remove potential UTF-8 BOM from the start of the file, which can interfere with parsing.
+  // Remove potential UTF-8 BOM
   if (csvText.charCodeAt(0) === 0xFEFF) {
     csvText = csvText.substring(1);
   }
 
-  // Normalize line endings to \n, then split into lines and filter out any empty ones.
   const lines = csvText.trim().replace(/\r\n/g, '\n').split('\n').filter(line => line.trim() !== '');
-
-  // Skip the header row.
-  const contentLines = lines.slice(1);
+  const contentLines = lines.slice(1); // Skip header
 
   return contentLines.map(line => {
-    // This simple split works because the Google Sheets CSV export wraps every field in quotes.
-    return line.split(',').map(field => {
-      // Remove the surrounding quotes from each field.
-      // e.g., '"field data"' becomes 'field data'
-      if (field.startsWith('"') && field.endsWith('"')) {
-        // Also handle escaped double quotes ("") inside the field by replacing them with a single quote (")
-        return field.substring(1, field.length - 1).replace(/""/g, '"');
+    const row: string[] = [];
+    let currentField = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        // Check for escaped quote ("")
+        if (i + 1 < line.length && line[i + 1] === '"') {
+          currentField += '"';
+          i++; // Skip the next quote
+        } else {
+          inQuotes = !inQuotes; // Toggle quote state
+        }
+      } else if (char === ',' && !inQuotes) {
+        // End of field
+        row.push(currentField);
+        currentField = '';
+      } else {
+        currentField += char;
       }
-      return field;
-    });
+    }
+    // Push the last field
+    row.push(currentField);
+    return row;
   });
 };
 
-
 export const fetchDonors = async (): Promise<Donor[]> => {
-  const response = await fetch(CSV_URL);
-  if (!response.ok) {
-    throw new Error('Failed to fetch donor data');
+  let csvText = '';
+  
+  try {
+    // Attempt 1: Direct Fetch
+    const response = await fetch(CSV_URL, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Network response was not ok');
+    csvText = await response.text();
+  } catch (error) {
+    console.warn('Direct fetch failed, attempting via proxy...', error);
+    try {
+        // Attempt 2: CORS Proxy Fallback
+        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(CSV_URL)}`;
+        const response = await fetch(proxyUrl, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Proxy network response was not ok');
+        csvText = await response.text();
+    } catch (proxyError) {
+        console.error('Proxy fetch also failed', proxyError);
+        throw new Error('Failed to fetch donor data. Please check your connection.');
+    }
   }
-  const csvText = await response.text();
+
   const dataRows = parseCSV(csvText);
 
   return dataRows.map((row): Donor | null => {
     // Basic validation to ensure the row has enough columns
-    if (row.length < 9) return null;
+    // We expect at least the columns up to Phone (index 6) to be present
+    if (row.length < 7) return null;
     
     // The columns are: Timestamp, Full Name, DOB, Gender, Blood Group, Wilaya, Phone, Last Donation, Notes
-    // We map them starting from row[0] as the parser now excludes the header.
     return {
       fullName: (row[1] || '').trim(),
       dob: (row[2] || '').trim(),
@@ -53,5 +81,5 @@ export const fetchDonors = async (): Promise<Donor[]> => {
       lastDonation: (row[7] || '').trim(),
       notes: (row[8] || '').trim(),
     };
-  }).filter((donor): donor is Donor => donor !== null && !!donor.fullName && !!donor.phone); // Filter out nulls and invalid donors
+  }).filter((donor): donor is Donor => donor !== null && !!donor.fullName && !!donor.phone);
 };

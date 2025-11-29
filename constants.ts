@@ -126,6 +126,55 @@ export const ABOUT_CONTENT = {
   ]
 };
 
+export const ELIGIBILITY_CONTENT = {
+  fr: [
+    {
+      content: "Le donneur doit être en bonne santé, sans fièvre, maladies infectieuses ou conditions médicales graves."
+    },
+    {
+      list: [
+        "Âge autorisé pour le don : entre 18 et 65 ans.",
+        "Le poids du donneur doit être au moins de 50 kg.",
+        "Le taux d’hémoglobine doit être suffisant selon le contrôle médical.",
+        "La tension artérielle, le pouls et la température corporelle doivent être dans les limites normales.",
+        "Les personnes présentant des maladies infectieuses, ayant reçu une transfusion récemment ou non éligibles selon les examens médicaux ne peuvent pas donner.",
+        "Le don doit être volontaire et gratuit, conformément à la législation nationale algérienne — la vente ou l’achat de sang est interdit.",
+        "Une évaluation médicale supplémentaire peut être demandée dans certains cas particuliers (certains médicaments, voyage dans des zones épidémiques, ou interventions récentes telles que tatouages ou piercings)."
+      ]
+    },
+    {
+      title: "Sources médicales",
+      list: [
+        "Organisation mondiale de la Santé – OMS (who.int)",
+        "PubMed – NCBI (ncbi.nlm.nih.gov)"
+      ]
+    }
+  ],
+  ar: [
+    {
+      content: "يجب أن يكون المتبرع بصحة جيدة، خالٍ من الحمى أو الأمراض المعدية أو الحالات الصحية الخطيرة."
+    },
+    {
+      list: [
+        "العمر المسموح به للتبرع: بين 18 و 65 سنة.",
+        "يجب أن يكون وزن المتبرع 50 كغ أو أكثر.",
+        "مستوى الهيموغلوبين (خضاب الدم) يجب أن يكون كافياً حسب الفحص الطبي.",
+        "ضغط الدم، نبض القلب، ودرجة حرارة الجسم يجب أن تكون ضمن المعدلات الطبيعية.",
+        "لا يُسمح بالتبرع للأشخاص المصابين بأمراض معدية، أو ممن تلقوا نقل دم مؤخراً، أو غير المؤهلين وفق الفحوصات الطبية.",
+        "التبرع يكون طوعياً ومجانياً، وفق القوانين الوطنية الجزائرية — يمنع بيع أو شراء الدم.",
+        "يمكن طلب تقييم طبي إضافي في بعض الحالات الخاصة (مثل بعض الأدوية، السفر لمناطق وبائية، أو إجراءات حديثة كالتاتو أو الوشم)."
+      ]
+    },
+    {
+      title: "المصادر الطبية",
+      list: [
+        "منظمة الصحة العالمية – WHO (who.int)",
+        "قاعدة بيانات PubMed – NCBI (ncbi.nlm.nih.gov)"
+      ]
+    }
+  ]
+};
+
 export const TRANSLATIONS = {
   ar: {
     mainTitle: "الهلال الأحمر الجزائري",
@@ -157,7 +206,7 @@ export const TRANSLATIONS = {
       initialSearchMessage: "ابحث عن احتياجك الدموي",
     },
     footerContact: "اتصل بنا",
-    footerRights: "© 2025 الهلال الأحمر الجزائري - سيدي بلعباس. كل الحقوق محفوظة.",
+    footerRights: "الهلال الأحمر الجزائري - سيدي بلعباس. جميع الحقوق محفوظة 2025 ©",
     fetchError: "حدث خطأ أثناء تحميل البيانات. يرجى المحاولة مرة أخرى.",
     loading: "جار التحميل...",
     male: "ذكر",
@@ -167,6 +216,7 @@ export const TRANSLATIONS = {
     metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس، يهدف إلى تسجيل متبرعين جدد بالدم والبحث عن متبرعين متوافقين بكفاءة.",
     callAction: "اتصل بالمتبرع",
     aboutApp: "حول هذا الموقع",
+    eligibilityTitle: "شروط أهلية التبرع بالدم",
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -208,5 +258,6 @@ export const TRANSLATIONS = {
     metaDescription: "Un site web professionnel et moderne pour le Croissant-Rouge Algérien – Comité de Wilaya de Sidi Bel Abbès, visant à enregistrer de nouveaux donneurs de sang et à rechercher efficacement des donneurs compatibles.",
     callAction: "Appeler le donneur",
     aboutApp: "À propos de cette application",
+    eligibilityTitle: "Conditions d’éligibilité",
   }
 };

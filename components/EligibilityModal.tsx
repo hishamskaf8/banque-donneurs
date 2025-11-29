@@ -1,18 +1,18 @@
 import React from 'react';
 import type { Language } from '../types';
-import { TRANSLATIONS, ABOUT_CONTENT } from '../constants';
+import { TRANSLATIONS, ELIGIBILITY_CONTENT } from '../constants';
 
-interface AboutModalProps {
+interface EligibilityModalProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
 }
 
-const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) => {
+const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, language }) => {
   if (!isOpen) return null;
 
   const t = TRANSLATIONS[language];
-  const content = ABOUT_CONTENT[language];
+  const content = ELIGIBILITY_CONTENT[language];
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -27,7 +27,14 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 bg-white sticky top-0 z-10">
-          <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">{t.aboutApp}</h2>
+          <h2 className="text-2xl font-black text-[#0F172A] flex items-center gap-3 tracking-tight">
+            <span className="p-2 bg-red-100 rounded-lg text-[#D61F1F]">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </span>
+            {t.eligibilityTitle}
+          </h2>
           <button 
             onClick={onClose}
             className="text-slate-400 hover:text-[#D61F1F] transition-colors p-2 rounded-full hover:bg-red-50"
@@ -41,19 +48,24 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         {/* Scrollable Body */}
         <div className="p-8 overflow-y-auto custom-scrollbar bg-white">
           {content.map((section, index) => (
-            <div key={index} className="mb-10 last:mb-0">
-              <h3 className="text-lg font-black text-[#D61F1F] mb-4 inline-flex items-center gap-2 uppercase tracking-wide">
-                <span className="w-3 h-3 rounded-none bg-[#D61F1F]"></span>
-                {section.title}
-              </h3>
+            <div key={index} className="mb-8 last:mb-0 p-6 bg-slate-50 rounded-xl border-2 border-slate-100">
+              {section.title && (
+                <h3 className="text-lg font-black text-[#D61F1F] mb-4 uppercase tracking-wide">
+                    {section.title}
+                </h3>
+              )}
               {section.content && (
-                <p className="text-[#0F172A] leading-relaxed whitespace-pre-line text-base font-bold">{section.content}</p>
+                <p className="text-[#0F172A] leading-relaxed text-base font-bold mb-3">
+                    {section.content}
+                </p>
               )}
               {section.list && (
-                <ul className="space-y-4 mt-4">
+                <ul className="space-y-3 mt-2">
                   {section.list.map((item, i) => (
-                    <li key={i} className="flex gap-4 text-[#334155] text-base leading-relaxed font-bold">
-                        <span className="flex-shrink-0 w-2 h-2 rounded-full bg-[#0D9488] mt-2.5"></span>
+                    <li key={i} className="flex gap-3 text-slate-700 text-base leading-relaxed font-bold">
+                        <svg className="w-5 h-5 text-[#0D9488] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"></path>
+                        </svg>
                         {item}
                     </li>
                   ))}
@@ -78,4 +90,4 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
   );
 };
 
-export default AboutModal;
+export default EligibilityModal;

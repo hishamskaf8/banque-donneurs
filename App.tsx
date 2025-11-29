@@ -7,6 +7,7 @@ import SearchForm from './components/SearchForm';
 import DonorTable from './components/DonorTable';
 import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
+import EligibilityModal from './components/EligibilityModal';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -16,13 +17,12 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState<boolean>(false);
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
+  const [isEligibilityOpen, setIsEligibilityOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    // Set document direction and language
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
     
-    // Update meta tags and title for better SEO and immersion
     const t = TRANSLATIONS[language];
     document.title = t.pageTitle;
     
@@ -52,9 +52,6 @@ const App: React.FC = () => {
     try {
       const donors = await fetchDonors();
       setAllDonors(donors);
-      // We don't need to setFilteredDonors here immediately for display 
-      // because we want to wait for user search, but we can initialize it 
-      // to ensure it has data when search happens.
       setFilteredDonors(donors);
     } catch (err) {
       setError(TRANSLATIONS[language].fetchError);
@@ -69,36 +66,31 @@ const App: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // A more robust normalization function to handle common Arabic character variations.
   const normalizeText = (str: string): string => {
     if (!str) return '';
     return str
-      .toLowerCase() // Standardize case for French names
-      .replace(/[أإآ]/g, 'ا')   // Unify all Alef variants to a single Alef
-      .replace(/[ىی]/g, 'ي')   // Unify Alef Maksura and Farsi Yeh to Arabic Yeh
-      .replace(/ة/g, 'ه')     // Unify Taa Marbuta to Heh
-      .replace(/\s+/g, '');  // Remove all whitespace characters
+      .toLowerCase()
+      .replace(/[أإآ]/g, 'ا')
+      .replace(/[ىی]/g, 'ي')
+      .replace(/ة/g, 'ه')
+      .replace(/\s+/g, '');
   };
 
 
   const handleSearch = useCallback((filters: { bloodGroup: string; wilaya: string; searchTerm: string; }) => {
     const { bloodGroup, wilaya, searchTerm } = filters;
-    setHasSearched(true); // Mark that a search has been performed
+    setHasSearched(true);
 
     const lowercasedSearchTerm = searchTerm.toLowerCase().trim();
 
     const result = allDonors.filter(donor => {
-      // Search term matching
       const nameMatch = lowercasedSearchTerm ? donor.fullName.toLowerCase().includes(lowercasedSearchTerm) : true;
       const phoneMatch = lowercasedSearchTerm ? donor.phone.toLowerCase().includes(lowercasedSearchTerm) : true;
       
-      // Robust blood group matching (removes all whitespace and compares case-insensitively)
       const bloodGroupMatch = bloodGroup
         ? donor.bloodGroup.replace(/\s/g, '').toUpperCase() === bloodGroup.replace(/\s/g, '').toUpperCase()
         : true;
       
-      // Wilaya Matching: Check against both French name and its Arabic equivalent.
-      // This makes the search robust regardless of the language in the data source.
       const wilayaMatch = wilaya
         ? normalizeText(donor.wilaya) === normalizeText(wilaya) ||
           normalizeText(donor.wilaya) === normalizeText(WILAYAS_MAP_FR_TO_AR[wilaya])
@@ -110,17 +102,17 @@ const App: React.FC = () => {
   }, [allDonors]);
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 selection:bg-red-100 selection:text-red-900 flex flex-col">
-      {/* Decorative top background */}
-      <div className="fixed top-0 inset-x-0 h-96 bg-gradient-to-b from-slate-100 to-transparent -z-10"></div>
+    <div className="bg-grid-pattern min-h-screen text-[#0F172A] flex flex-col relative selection:bg-[#D61F1F] selection:text-white">
+      {/* No blurred backgrounds - Pure Sharp White */}
       
       <Header 
         language={language} 
         setLanguage={setLanguage} 
         onOpenAbout={() => setIsAboutOpen(true)}
+        onOpenEligibility={() => setIsEligibilityOpen(true)}
       />
 
-      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl relative z-0">
         <SearchForm
           language={language}
           bloodGroups={BLOOD_GROUPS}
@@ -130,7 +122,7 @@ const App: React.FC = () => {
         />
 
         {error && (
-          <div className="text-center p-4 my-6 bg-red-50 border border-red-200 text-red-700 rounded-lg shadow-sm">
+          <div className="text-center p-6 my-6 bg-red-50 border-2 border-[#D61F1F] text-[#D61F1F] font-bold rounded-xl shadow-none">
             {error}
           </div>
         )}
@@ -149,6 +141,12 @@ const App: React.FC = () => {
       <AboutModal 
         isOpen={isAboutOpen}
         onClose={() => setIsAboutOpen(false)}
+        language={language}
+      />
+
+      <EligibilityModal
+        isOpen={isEligibilityOpen}
+        onClose={() => setIsEligibilityOpen(false)}
         language={language}
       />
     </div>

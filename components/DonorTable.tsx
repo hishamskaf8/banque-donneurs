@@ -16,11 +16,15 @@ const SearchIcon: React.FC = () => (
 );
 
 const BloodDropHero: React.FC = () => (
-    <div className="relative mb-4">
-        <div className="absolute inset-0 bg-red-100 rounded-full opacity-50 blur-xl"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-[#C62828] relative z-10" viewBox="0 0 24 24" fill="currentColor">
-            <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.176 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
-        </svg>
+    <div className="relative mb-8 cursor-default flex justify-center">
+        {/* Main Icon - Solid and Sharp */}
+        <div className="relative z-10 w-28 h-28 bg-[#D61F1F] rounded-full flex items-center justify-center shadow-xl border-4 border-white">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.176 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
+            </svg>
+        </div>
+        {/* Sharp Badge */}
+        <div className="absolute top-0 -right-2 w-8 h-8 bg-[#0D9488] rounded-full border-4 border-white shadow-md"></div>
     </div>
 );
 
@@ -35,147 +39,175 @@ interface DonorTableProps {
 const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, isLoading, hasSearched }) => {
   const t = TRANSLATIONS[language];
 
-  // Helper function to translate gender based on current language
   const translateGender = (gender: string) => {
     const lowerCaseGender = gender.toLowerCase().trim();
-    if (lowerCaseGender === 'ذكر' || lowerCaseGender === 'male') {
-        return t.male;
-    }
-    if (lowerCaseGender === 'أنثى' || lowerCaseGender === 'female') {
-        return t.female;
-    }
-    return gender; // Fallback for any other value
+    if (lowerCaseGender === 'ذكر' || lowerCaseGender === 'male') return t.male;
+    if (lowerCaseGender === 'أنثى' || lowerCaseGender === 'female') return t.female;
+    return gender;
   };
 
   if (isLoading) {
     return (
-        <div className="flex flex-col items-center justify-center p-16 bg-white rounded-xl shadow-sm border border-slate-200 min-h-[300px]">
+        <div className="flex flex-col items-center justify-center p-20 bg-white rounded-xl shadow-lg border border-slate-200 min-h-[400px]">
             <LoadingSpinner />
-            <p className="mt-4 text-slate-500 font-medium">{t.loading}</p>
+            <p className="mt-6 text-[#D61F1F] font-black tracking-wide text-lg">{t.loading}</p>
         </div>
     );
   }
 
-  // Show initial message if no search has been performed yet
+  // Initial State Design
   if (!hasSearched) {
     return (
-      <div className="flex flex-col items-center justify-center p-16 bg-white rounded-xl shadow-sm border border-slate-200 text-center min-h-[400px]">
+      <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-white rounded-xl shadow-lg border-2 border-slate-100 text-center min-h-[500px]">
+        
         <BloodDropHero />
-        <h3 className="text-2xl md:text-3xl font-extrabold text-slate-800 mb-3 tracking-tight">{t.table.initialSearchMessage}</h3>
-        <p className="text-slate-600 max-w-lg text-lg leading-relaxed">{t.searchNote}</p>
+        
+        <div className="relative z-10 max-w-lg space-y-5">
+            <h3 className="text-3xl md:text-4xl font-black text-[#0F172A] tracking-tight leading-tight">
+                {t.table.initialSearchMessage}
+            </h3>
+            <div className="w-20 h-1.5 bg-[#D61F1F] mx-auto rounded-full"></div>
+            <p className="text-slate-600 text-lg font-bold leading-relaxed">
+                {t.searchNote}
+            </p>
+        </div>
       </div>
     );
   }
 
   const NoResultsView = () => (
-    <div className="flex flex-col items-center gap-3 text-slate-500 py-12">
-        <SearchIcon />
-        <p className="font-semibold text-lg text-slate-700">{t.table.noResults}</p>
-        <p className="text-sm">{t.table.noResultsHint}</p>
+    <div className="flex flex-col items-center gap-4 text-slate-400 py-16">
+        <div className="p-6 bg-slate-50 rounded-full border-2 border-slate-200">
+            <SearchIcon />
+        </div>
+        <div className="text-center">
+            <p className="font-bold text-xl text-slate-800 mb-1">{t.table.noResults}</p>
+            <p className="text-base text-slate-600 font-medium">{t.table.noResultsHint}</p>
+        </div>
     </div>
   );
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-      <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-        <h3 className="font-bold text-slate-800">{t.totalDonors}</h3>
-        <span className="bg-red-100 text-[#C62828] text-sm font-bold px-3 py-1 rounded-full">{totalDonors}</span>
+    <div className="space-y-6 animate-pop">
+      {/* Results Header */}
+      <div className="flex justify-between items-center px-2">
+        <h3 className="text-xl font-bold text-[#0F172A] flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-[#0D9488]"></span>
+            {t.totalDonors}
+        </h3>
+        <span className="bg-[#D61F1F] text-white text-sm font-black px-4 py-1.5 rounded-full shadow-md">
+            {totalDonors}
+        </span>
       </div>
       
-      {/* Desktop Table */}
-      <div className="hidden lg:block overflow-x-auto">
-        <table className="w-full text-sm text-start text-slate-700">
-          <thead className="text-xs text-slate-600 uppercase bg-slate-50 border-b border-slate-200">
-            <tr>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.fullName}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.bloodGroup}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.gender}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.wilaya}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.phone}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.lastDonation}</th>
-              <th scope="col" className="px-6 py-4 font-bold text-start">{t.table.notes}</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
+      <div className="bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+        {/* Desktop Table */}
+        <div className="hidden lg:block overflow-x-auto">
+            <table className="w-full text-sm text-start text-slate-700">
+            <thead className="text-xs text-[#0F172A] font-black uppercase tracking-wider bg-slate-100 border-b-2 border-slate-200">
+                <tr>
+                <th scope="col" className="px-8 py-5 text-start">{t.table.fullName}</th>
+                <th scope="col" className="px-6 py-5 text-start">{t.table.bloodGroup}</th>
+                <th scope="col" className="px-6 py-5 text-start">{t.table.gender}</th>
+                <th scope="col" className="px-6 py-5 text-start">{t.table.wilaya}</th>
+                <th scope="col" className="px-6 py-5 text-start">{t.table.phone}</th>
+                <th scope="col" className="px-6 py-5 text-start">{t.table.lastDonation}</th>
+                <th scope="col" className="px-8 py-5 text-start">{t.table.notes}</th>
+                </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+                {donors.length > 0 ? donors.map((donor, index) => (
+                <tr key={`${donor.phone}-${index}`} className="bg-white hover:bg-red-50/30 transition-all duration-200 group border-b border-slate-50 last:border-0">
+                    <td className="px-8 py-5 font-bold text-[#0F172A] text-base whitespace-nowrap">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-[#0F172A] font-black text-sm border-2 border-slate-200 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors">
+                                {donor.fullName.charAt(0)}
+                            </div>
+                            {donor.fullName}
+                        </div>
+                    </td>
+                    <td className="px-6 py-5">
+                        <span className="inline-flex items-center justify-center w-12 h-9 rounded bg-[#D61F1F] text-white font-black shadow-sm">
+                            {donor.bloodGroup}
+                        </span>
+                    </td>
+                    <td className="px-6 py-5 font-bold text-slate-700">{translateGender(donor.gender)}</td>
+                    <td className="px-6 py-5 font-bold">
+                        <span className="inline-block px-3 py-1 bg-slate-100 rounded text-slate-800 text-xs font-bold border border-slate-300">
+                            {donor.wilaya}
+                        </span>
+                    </td>
+                    <td className="px-6 py-5">
+                    <a 
+                        href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
+                        title={t.callAction} 
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white text-[#0D9488] border-2 border-[#0D9488] rounded-lg font-bold hover:bg-[#0D9488] hover:text-white transition-all duration-200"
+                    >
+                        <PhoneIcon />
+                        <span>{donor.phone}</span>
+                    </a>
+                    </td>
+                    <td className="px-6 py-5 text-slate-800 font-bold font-mono text-xs">{donor.lastDonation || '-'}</td>
+                    <td className="px-8 py-5 max-w-xs truncate text-slate-500 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
+                </tr>
+                )) : (
+                <tr>
+                    <td colSpan={7} className="text-center">
+                    <NoResultsView />
+                    </td>
+                </tr>
+                )}
+            </tbody>
+            </table>
+        </div>
+
+        {/* Mobile Card View (High Contrast) */}
+        <div className="lg:hidden bg-slate-50 p-4 space-y-4">
             {donors.length > 0 ? donors.map((donor, index) => (
-              <tr key={`${donor.phone}-${index}`} className="bg-white hover:bg-slate-50 transition-colors">
-                <td className="px-6 py-4 font-bold text-slate-900 whitespace-nowrap">{donor.fullName}</td>
-                <td className="px-6 py-4">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-50 text-[#C62828] font-bold border border-red-100">
+            <div key={`${donor.phone}-${index}`} className="bg-white p-6 rounded-xl shadow-md border border-slate-200 relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-2 h-full bg-[#D61F1F]"></div>
+                
+                <div className="flex justify-between items-start mb-5 pl-4">
+                    <div>
+                        <h4 className="font-black text-xl text-[#0F172A] leading-tight mb-2">{donor.fullName}</h4>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 text-slate-800 text-xs font-bold border border-slate-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                            </svg>
+                            {donor.wilaya}
+                        </span>
+                    </div>
+                    <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[#D61F1F] text-white rounded-xl font-black text-2xl shadow-lg border-2 border-white">
                         {donor.bloodGroup}
-                    </span>
-                </td>
-                <td className="px-6 py-4 text-slate-700 font-medium">{translateGender(donor.gender)}</td>
-                <td className="px-6 py-4 text-slate-800 font-medium">{donor.wilaya}</td>
-                <td className="px-6 py-4">
-                  <a 
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-6 pl-4">
+                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span className="text-[10px] text-slate-500 uppercase font-black block mb-0.5">{t.table.gender}</span>
+                        <span className="font-bold text-[#0F172A] text-sm">{translateGender(donor.gender)}</span>
+                    </div>
+                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span className="text-[10px] text-slate-500 uppercase font-black block mb-0.5">{t.table.lastDonation}</span>
+                        <span className="font-bold text-[#0F172A] text-sm">{donor.lastDonation || '-'}</span>
+                    </div>
+                </div>
+
+                <a 
                     href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
-                    title={t.callAction} 
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 text-green-700 border border-green-200 rounded-md font-semibold hover:bg-green-100 hover:border-green-300 transition-all text-xs"
-                  >
+                    className="flex items-center justify-center gap-2 w-full py-4 bg-[#0D9488] text-white rounded-lg font-black hover:bg-[#0F766E] transition-all duration-200 shadow-md active:translate-y-0.5"
+                >
                     <PhoneIcon />
-                    <span>{donor.phone}</span>
-                  </a>
-                </td>
-                <td className="px-6 py-4 text-slate-600">{donor.lastDonation || '-'}</td>
-                <td className="px-6 py-4 max-w-xs text-slate-600 truncate" title={donor.notes}>{donor.notes || '-'}</td>
-              </tr>
+                    <span>{t.callAction}</span>
+                </a>
+            </div>
             )) : (
-              <tr>
-                <td colSpan={7} className="text-center">
-                  <NoResultsView />
-                </td>
-              </tr>
+            <div className="text-center py-10">
+                <NoResultsView />
+            </div>
             )}
-          </tbody>
-        </table>
+        </div>
       </div>
-
-      {/* Mobile/Tablet Card View */}
-      <div className="lg:hidden p-4 space-y-4 bg-slate-50">
-        {donors.length > 0 ? donors.map((donor, index) => (
-          <div key={`${donor.phone}-${index}`} className="bg-white p-5 rounded-lg shadow-sm border border-slate-200 hover:border-red-200 transition-all">
-            <div className="flex justify-between items-start mb-3">
-              <div className="flex flex-col">
-                <p className="font-bold text-lg text-slate-900">{donor.fullName}</p>
-                <span className="text-sm text-slate-600 font-medium">{donor.wilaya}</span>
-              </div>
-              <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#C62828] text-white rounded-lg font-bold text-xl shadow-sm">
-                {donor.bloodGroup}
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-y-2 text-sm text-slate-700 mb-4">
-               <div>
-                  <span className="text-xs text-slate-500 uppercase block font-semibold">{t.table.gender}</span>
-                  <span className="font-medium">{translateGender(donor.gender)}</span>
-               </div>
-               <div>
-                  <span className="text-xs text-slate-500 uppercase block font-semibold">{t.table.lastDonation}</span>
-                  <span className="font-medium">{donor.lastDonation || '-'}</span>
-               </div>
-               {donor.notes && (
-                   <div className="col-span-2 bg-slate-50 p-3 rounded text-sm mt-1 border border-slate-100 text-slate-700 leading-relaxed">
-                      {donor.notes}
-                   </div>
-               )}
-            </div>
-
-            <a 
-                href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
-                className="flex items-center justify-center gap-2 w-full py-3 bg-green-600 text-white rounded-lg font-bold shadow-sm hover:bg-green-700 active:bg-green-800 transition-colors"
-            >
-                <PhoneIcon />
-                <span>{t.callAction}</span>
-            </a>
-          </div>
-        )) : (
-          <div className="text-center py-8">
-            <NoResultsView />
-          </div>
-        )}
-      </div>
-
     </div>
   );
 };
