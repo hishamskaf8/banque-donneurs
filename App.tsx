@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Donor, Language } from './types';
 import { TRANSLATIONS, BLOOD_GROUPS, WILAYAS_MAP_FR_TO_AR } from './constants';
@@ -7,6 +6,7 @@ import Header from './components/Header';
 import SearchForm from './components/SearchForm';
 import DonorTable from './components/DonorTable';
 import Footer from './components/Footer';
+import AboutModal from './components/AboutModal';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState<boolean>(false);
+  const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Set document direction and language
@@ -109,12 +110,17 @@ const App: React.FC = () => {
   }, [allDonors]);
 
   return (
-    <div className="bg-gray-50 min-h-screen font-sans text-gray-800">
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-br from-red-100 via-red-50 to-white -z-10"></div>
+    <div className="bg-slate-50 min-h-screen text-slate-800 selection:bg-red-100 selection:text-red-900 flex flex-col">
+      {/* Decorative top background */}
+      <div className="fixed top-0 inset-x-0 h-96 bg-gradient-to-b from-slate-100 to-transparent -z-10"></div>
       
-      <Header language={language} setLanguage={setLanguage} />
+      <Header 
+        language={language} 
+        setLanguage={setLanguage} 
+        onOpenAbout={() => setIsAboutOpen(true)}
+      />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl">
         <SearchForm
           language={language}
           bloodGroups={BLOOD_GROUPS}
@@ -123,18 +129,28 @@ const App: React.FC = () => {
           isLoading={isLoading}
         />
 
-        {error && <div className="text-center p-4 my-4 bg-red-100 text-red-700 rounded-lg">{error}</div>}
+        {error && (
+          <div className="text-center p-4 my-6 bg-red-50 border border-red-200 text-red-700 rounded-lg shadow-sm">
+            {error}
+          </div>
+        )}
 
         <DonorTable
           language={language}
           donors={filteredDonors}
-          totalDonors={filteredDonors.length} // Show count of filtered results
+          totalDonors={filteredDonors.length}
           isLoading={isLoading}
           hasSearched={hasSearched}
         />
       </main>
       
       <Footer language={language} />
+
+      <AboutModal 
+        isOpen={isAboutOpen}
+        onClose={() => setIsAboutOpen(false)}
+        language={language}
+      />
     </div>
   );
 };

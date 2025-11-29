@@ -31,6 +31,101 @@ export const BLOOD_GROUPS = [
   "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-",
 ];
 
+export const ABOUT_CONTENT = {
+  fr: [
+    {
+      title: "Objectif & Mission",
+      content: "Cette application a été conçue pour faciliter le don de sang à Sidi Bel Abbès, Algérie, en connectant les donneurs locaux aux personnes dans le besoin. Développée en partenariat avec le Croissant-Rouge Algérien – Comité de Sidi Bel Abbès, elle vise à sauver des vies en simplifiant le processus de don et la disponibilité du sang au sein de la communauté locale."
+    },
+    {
+      title: "Développement de l’application",
+      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par Skaf Hisham pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
+    },
+    {
+      title: "Principales fonctionnalités",
+      list: [
+        "Inscription des donneurs : Une inscription simple et sécurisée pour les habitants de Sidi Bel Abbès souhaitant donner leur sang, avec gestion du profil personnel.",
+        "Recherche locale de sang : Les bénéficiaires ou le personnel médical peuvent rechercher des donneurs par groupe sanguin et quartier pour une assistance rapide et efficace.",
+        "Historique des dons : Suivi des dons précédents et réception de notifications sur les prochaines campagnes de don à Sidi Bel Abbès.",
+        "Sécurité & confidentialité : Toutes les données personnelles sont stockées de manière sécurisée selon les normes les plus strictes de protection des informations.",
+        "Notifications & alertes : Alertes en temps réel pour les besoins urgents en sang et les campagnes de don programmées dans la ville.",
+        "Ressources éducatives : Informations sur les procédures de don, ses bienfaits et les critères d’éligibilité, adaptées à la communauté locale."
+      ]
+    },
+    {
+      title: "Conditions & Confidentialité",
+      list: [
+        "Les utilisateurs doivent fournir des informations personnelles et médicales exactes pour assurer une gestion sûre et efficace des dons.",
+        "L’application est destinée uniquement à des dons de sang volontaires et non commerciaux à Sidi Bel Abbès.",
+        "Les données personnelles collectées via l’application sont utilisées exclusivement pour la coordination des dons et ne seront pas partagées avec des tiers sans consentement.",
+        "En utilisant l’application, les utilisateurs s’engagent à respecter les directives locales relatives à l’éligibilité au don. ",
+        "Les utilisateurs peuvent demander la suppression de leurs données personnelles à tout moment en contactant le support."
+      ]
+    },
+    {
+      title: "Pourquoi choisir Done de Sang CRA – Sidi Bel Abbès",
+      list: [
+        "Soutient la mission humanitaire du Croissant-Rouge Algérien au niveau local.",
+        "Assure des temps de réponse rapides en cas d’urgence dans la ville.",
+        "Favorise une communauté de donneurs réguliers, renforçant la santé publique locale.",
+        "Conçu pour être simple, fiable et accessible."
+      ]
+    },
+    {
+      title: "Participez et sauvez des vies",
+      content: "En utilisant cette application, vous contribuez à sauver des vies à Sidi Bel Abbès, à sensibiliser sur l’importance du don de sang et à construire une communauté plus forte et en meilleure santé. Chaque don compte."
+    },
+    {
+      title: "Support & Contact",
+      content: "Pour toute assistance ou question, veuillez contacter l’équipe locale via l’application ou directement le Croissant-Rouge Algérien – Comité de Sidi Bel Abbès."
+    }
+  ],
+  ar: [
+    {
+      title: "الغرض والمهمة",
+      content: "تم تصميم هذا التطبيق لتسهيل عملية التبرع بالدم في سيدي بلعباس، الجزائر، من خلال ربط المتبرعين المحليين بالمحتاجين. بالتعاون مع الهلال الأحمر الجزائري – لجنة سيدي بلعباس، يهدف التطبيق إلى إنقاذ الأرواح من خلال تسهيل عملية التبرع وتوفير الدم داخل المجتمع المحلي."
+    },
+    {
+      title: "أهم الميزات",
+      list: [
+        "تسجيل المتبرعين: تسجيل سهل وآمن للأشخاص في سيدي بلعباس الراغبين بالتبرع، مع إمكانية إدارة الملف الشخصي.",
+        "البحث المحلي عن الدم: يمكن للمحتاجين أو الطاقم الطبي البحث عن المتبرعين حسب فصيلة الدم والمنطقة لضمان استجابة سريعة وفعالة.",
+        "سجل التبرعات: متابعة التبرعات السابقة واستلام إشعارات حول حملات التبرع القادمة في سيدي بلعباس.",
+        "السلامة والخصوصية: يتم تخزين جميع البيانات الشخصية بشكل آمن وفق أعلى معايير حماية المعلومات.",
+        "الإشعارات والتنبيهات: تنبيهات فورية لحالات الطوارئ وحملات التبرع المجدولة في المدينة.",
+        "الموارد التثقيفية: معلومات حول إجراءات التبرع وفوائده ومتطلبات الأهلية، مخصصة للمجتمع المحلي."
+      ]
+    },
+    {
+      title: "الشروط والخصوصية",
+      list: [
+        "يجب على المستخدمين تقديم معلومات شخصية وطبية دقيقة لضمان سلامة إدارة التبرع.",
+        "التطبيق مخصص لأغراض التبرع الطوعي وغير التجاري داخل سيدي بلعباس فقط.",
+        "تُستخدم البيانات الشخصية التي يتم جمعها عبر التطبيق حصريًا لتنسيق التبرع بالدم ولن تُشارك مع أي طرف ثالث بدون موافقة المستخدم.",
+        "باستخدام التطبيق، يوافق المستخدمون على الالتزام بإرشادات ومتطلبات التبرع المحلية.",
+        "يمكن للمستخدمين طلب حذف بياناتهم الشخصية في أي وقت عن طريق التواصل مع الدعم."
+      ]
+    },
+    {
+      title: "لماذا تختار تطبيق تبرع بالدم CRA – سيدي بلعباس؟",
+      list: [
+        "يدعم المهمة الإنسانية للهلال الأحمر الجزائري على المستوى المحلي.",
+        "يضمن استجابة سريعة لحالات الطوارئ في المدينة.",
+        "يشجع على بناء مجتمع من المتبرعين المنتظمين، مما يعزز الصحة العامة المحلية.",
+        "مصمم ليكون بسيطًا وموثوقًا وسهل الوصول إليه."
+      ]
+    },
+    {
+      title: "شارك وانقذ حياة",
+      content: "باستخدامك لهذا التطبيق، تساهم في إنقاذ الأرواح في سيدي بلعباس، وزيادة الوعي بأهمية التبرع بالدم، وبناء مجتمع أقوى وأكثر صحة. كل تبرع مهم."
+    },
+    {
+      title: "الدعم والتواصل",
+      content: "للحصول على المساعدة أو الاستفسار، يرجى التواصل مع فريق الدعم المحلي عبر التطبيق أو الاتصال مباشرة بـ الهلال الأحمر الجزائري – لجنة سيدي بلعباس."
+    }
+  ]
+};
+
 export const TRANSLATIONS = {
   ar: {
     mainTitle: "الهلال الأحمر الجزائري",
@@ -71,6 +166,7 @@ export const TRANSLATIONS = {
     pageTitle: "قطرات أمل - بنك المتبرعين بالدم",
     metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس، يهدف إلى تسجيل متبرعين جدد بالدم والبحث عن متبرعين متوافقين بكفاءة.",
     callAction: "اتصل بالمتبرع",
+    aboutApp: "حول هذا الموقع",
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -111,5 +207,6 @@ export const TRANSLATIONS = {
     pageTitle: "Gouttes d’Espoir - Banque des donneurs",
     metaDescription: "Un site web professionnel et moderne pour le Croissant-Rouge Algérien – Comité de Wilaya de Sidi Bel Abbès, visant à enregistrer de nouveaux donneurs de sang et à rechercher efficacement des donneurs compatibles.",
     callAction: "Appeler le donneur",
+    aboutApp: "À propos de cette application",
   }
 };

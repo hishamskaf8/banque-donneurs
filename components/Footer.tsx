@@ -17,21 +17,27 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
   const t = TRANSLATIONS[language];
 
   return (
-    <footer className="bg-gray-800 text-white mt-12 py-8">
-      <div className="container mx-auto px-4 text-center">
-        <p className="font-bold mb-2">{t.footerContact}</p>
-        <div className="flex justify-center items-center gap-4 text-gray-300 mb-4">
-          <a
-            href="https://web.facebook.com/profile.php?id=61571702909168"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-white transition-colors"
-          >
-            <FacebookIcon />
-            <span>{t.whatsappContact}</span>
-          </a>
+    <footer className="bg-slate-900 text-white mt-auto">
+      <div className="container mx-auto px-4 py-10 max-w-6xl">
+        <div className="flex flex-col items-center">
+            <h4 className="font-bold text-lg mb-4 text-slate-100">{t.footerContact}</h4>
+            
+            <a
+                href="https://web.facebook.com/profile.php?id=61571702909168"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-5 py-2.5 bg-slate-800 rounded-full hover:bg-[#1877F2] hover:text-white transition-all duration-300 group mb-8 border border-slate-700"
+            >
+                <FacebookIcon />
+                <span className="font-medium group-hover:tracking-wide transition-all">{t.whatsappContact}</span>
+            </a>
+
+            <div className="w-full h-px bg-slate-800 mb-6"></div>
+            
+            <div className="text-center w-full text-sm text-slate-400 font-medium">
+                <p>{t.footerRights}</p>
+            </div>
         </div>
-        <p className="text-xs text-gray-400">{t.footerRights}</p>
       </div>
     </footer>
   );

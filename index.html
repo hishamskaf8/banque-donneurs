@@ -19,21 +19,37 @@
     <meta property="twitter:description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès, aimed at registering new blood donors and allowing users to search for compatible blood donors efficiently." />
     <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
     
+    <!-- Fonts: Inter for Latin, Tajawal for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      :root {
+        --font-latin: 'Inter', sans-serif;
+        --font-arabic: 'Tajawal', sans-serif;
+      }
+      body {
+        font-family: var(--font-latin);
+      }
+      html[lang="ar"] body {
+        font-family: var(--font-arabic);
+      }
+      
       /* Simple scrollbar styling for a more modern look */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #f1f5f9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #C62828;
+        background: #cbd5e1;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #a12020;
+        background: #94a3b8;
       }
     </style>
   <script type="importmap">
