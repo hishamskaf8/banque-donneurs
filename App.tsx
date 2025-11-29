@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Donor, Language } from './types';
-import { TRANSLATIONS, BLOOD_GROUPS, WILAYAS_MAP_FR_TO_AR } from './constants';
+import { TRANSLATIONS, BLOOD_GROUPS, WILAYAS_MAP_FR_TO_AR, GOOGLE_FORM_URL } from './constants';
 import { fetchDonors } from './services/donorService';
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
@@ -102,9 +103,24 @@ const App: React.FC = () => {
   }, [allDonors]);
 
   return (
-    <div className="bg-grid-pattern min-h-screen text-[#0F172A] flex flex-col relative selection:bg-[#D61F1F] selection:text-white">
-      {/* No blurred backgrounds - Pure Sharp White */}
+    <div className="bg-grid-pattern min-h-screen text-[#0F172A] flex flex-col relative selection:bg-[#D61F1F] selection:text-white overflow-hidden">
       
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
+        <svg className="absolute top-[10%] left-[5%] w-24 h-24 text-red-100 animate-float" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        <svg className="absolute top-[20%] right-[10%] w-16 h-16 text-slate-100 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        <svg className="absolute bottom-[15%] left-[15%] w-32 h-32 text-red-50 animate-float" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+         <svg className="absolute bottom-[30%] right-[5%] w-20 h-20 text-slate-50 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+      </div>
+
       <Header 
         language={language} 
         setLanguage={setLanguage} 
@@ -112,7 +128,24 @@ const App: React.FC = () => {
         onOpenEligibility={() => setIsEligibilityOpen(true)}
       />
 
-      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl relative z-0">
+      {/* New Hero Action Section */}
+      <section className="relative z-10 w-full bg-gradient-to-b from-white to-slate-50 border-b border-red-100 py-6 shadow-sm">
+        <div className="container mx-auto px-4 max-w-6xl flex justify-center">
+            <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto min-w-[300px] text-center px-8 py-4 text-base md:text-lg font-bold text-white bg-[#D61F1F] hover:bg-[#B91C1C] rounded-full shadow-lg shadow-red-200 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 animate-pulse-ring"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
+            </svg>
+            <span>{TRANSLATIONS[language].registerButton}</span>
+          </a>
+        </div>
+      </section>
+
+      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl relative z-10">
         <SearchForm
           language={language}
           bloodGroups={BLOOD_GROUPS}
