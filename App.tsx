@@ -104,17 +104,47 @@ const App: React.FC = () => {
       .replace(/\s+/g, '');
   };
 
+  const normalizeNumerals = (str: string): string => {
+    if (!str) return '';
+    return str.replace(/[٠-٩]/g, d => '0123456789'['٠١٢٣٤٥٦٧٨٩'.indexOf(d)]);
+  };
 
   const handleSearch = useCallback((filters: { bloodGroup: string; wilaya: string; searchTerm: string; }) => {
     const { bloodGroup, wilaya, searchTerm } = filters;
     setHasSearched(true);
 
-    const lowercasedSearchTerm = searchTerm.toLowerCase().trim();
+    const rawSearchTerm = searchTerm.trim();
+    // Normalize numerals (٠-٩ -> 0-9) and lowercase
+    const normalizedTerm = normalizeNumerals(rawSearchTerm).toLowerCase();
+    // Extract digits for phone matching (ignores spaces like "06 60")
+    const searchDigits = normalizedTerm.replace(/[^0-9]/g, '');
 
     const result = allDonors.filter(donor => {
-      const nameMatch = lowercasedSearchTerm ? donor.fullName.toLowerCase().includes(lowercasedSearchTerm) : true;
-      const phoneMatch = lowercasedSearchTerm ? donor.phone.toLowerCase().includes(lowercasedSearchTerm) : true;
+      // 1. Name Match (Normalize numerals in name just in case)
+      const donorName = normalizeNumerals(donor.fullName).toLowerCase();
+      const nameMatch = normalizedTerm ? donorName.includes(normalizedTerm) : true;
       
+      // 2. Phone Match
+      // Normalize numerals in donor phone and strip non-digits for comparison
+      const donorPhone = normalizeNumerals(donor.phone);
+      const donorPhoneDigits = donorPhone.replace(/[^0-9]/g, '');
+      
+      let phoneMatch = true;
+      if (normalizedTerm) {
+        if (searchDigits.length > 0) {
+           // If search term has digits, check against pure digits of phone
+           phoneMatch = donorPhoneDigits.includes(searchDigits);
+        } else {
+           // If no digits, unlikely to be a phone search, but check raw
+           phoneMatch = false;
+        }
+        
+        // Fallback: check if the normalized term exists in the phone string (e.g. if user searches partial text in phone field)
+        if (!phoneMatch) {
+            phoneMatch = donorPhone.toLowerCase().includes(normalizedTerm);
+        }
+      }
+
       const bloodGroupMatch = bloodGroup
         ? donor.bloodGroup.replace(/\s/g, '').toUpperCase() === bloodGroup.replace(/\s/g, '').toUpperCase()
         : true;
