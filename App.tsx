@@ -9,6 +9,7 @@ import DonorTable from './components/DonorTable';
 import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
 import EligibilityModal from './components/EligibilityModal';
+import ARCModal from './components/ARCModal';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -19,6 +20,7 @@ const App: React.FC = () => {
   const [hasSearched, setHasSearched] = useState<boolean>(false);
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
   const [isEligibilityOpen, setIsEligibilityOpen] = useState<boolean>(false);
+  const [isARCOpen, setIsARCOpen] = useState<boolean>(false);
 
   useEffect(() => {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
@@ -126,6 +128,7 @@ const App: React.FC = () => {
         setLanguage={setLanguage} 
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenEligibility={() => setIsEligibilityOpen(true)}
+        onOpenARC={() => setIsARCOpen(true)}
       />
 
       {/* New Hero Action Section */}
@@ -180,6 +183,12 @@ const App: React.FC = () => {
       <EligibilityModal
         isOpen={isEligibilityOpen}
         onClose={() => setIsEligibilityOpen(false)}
+        language={language}
+      />
+      
+      <ARCModal
+        isOpen={isARCOpen}
+        onClose={() => setIsARCOpen(false)}
         language={language}
       />
     </div>

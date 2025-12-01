@@ -1,4 +1,5 @@
 
+
 export const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScaVCcBV32iBwj2qWnkh0Ds5IfLYyWroDnQfjjlzrsz3K6oiQ/viewform?usp=header';
 export const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmbM3HyrZZMS1ukgzdPH2Kx60iMQb8Je3Cuxl6EAZgzTEL6K31yO9h5qobj_RexjI0Ww9iojcL5QvF/pub?gid=1898439372&single=true&output=csv';
 
@@ -39,7 +40,7 @@ export const ABOUT_CONTENT = {
     },
     {
       title: "Développement de l’application",
-      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par Skaf Hisham pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
+      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par <span class=\"font-black text-lg mx-1\">Skaf Hisham</span> pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
     },
     {
       title: "Principales fonctionnalités",
@@ -87,7 +88,7 @@ export const ABOUT_CONTENT = {
     },
     {
       title: "تطوير التطبيق",
-      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل سكاف هشام لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
+      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل <span class=\"font-black text-lg mx-1\">سكاف هشام</span> لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
     },
     {
       title: "أهم الميزات",
@@ -179,6 +180,21 @@ export const ELIGIBILITY_CONTENT = {
   ]
 };
 
+export const ARC_CONTENT = {
+  fr: [
+    {
+      title: "Aperçu en français",
+      content: "Le Croissant-Rouge Algérien est une organisation humanitaire nationale fondée en 1956, opérant selon les principes du Mouvement international de la Croix-Rouge et du Croissant-Rouge. Sa mission consiste à apporter une aide aux personnes vulnérables sans discrimination, à renforcer la solidarité, à intervenir lors des urgences et des catastrophes, ainsi qu’à soutenir la santé publique. L’organisation s’appuie sur un vaste réseau de bénévoles présents dans toutes les wilayas du pays, faisant d’elle un acteur essentiel de l’action humanitaire en Algérie."
+    }
+  ],
+  ar: [
+    {
+      title: "لمحة بالعربية",
+      content: "الهلال الأحمر الجزائري جمعية إنسانية وطنية تأسست عام 1956، وتعتمد على مبادئ الحركة الدولية للصليب الأحمر والهلال الأحمر. يعمل بهدف تقديم المساعدة للمحتاجين دون تمييز، وتعزيز التضامن، والاستجابة للطوارئ والكاتastrofes، إضافة إلى دعم الصحة العمومية والتكفل بالفئات الهشة. يعتمد في نشاطاته على شبكة واسعة من المتطوعين عبر جميع ولايات الجزائر، ويُعد قوة أساسية في العمل الإغاثي والإنساني داخل البلاد."
+    }
+  ]
+};
+
 export const TRANSLATIONS = {
   ar: {
     mainTitle: "الهلال الأحمر الجزائري",
@@ -216,11 +232,14 @@ export const TRANSLATIONS = {
     male: "ذكر",
     female: "أنثى",
     whatsappContact: "تواصل معنا",
+    supportContact: "تواصل مع الدعم",
+    ourLocation: "موقعنا على الخريطة",
     pageTitle: "قطرات أمل - بنك المتبرعين بالدم",
     metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس، يهدف إلى تسجيل متبرعين جدد بالدم والبحث عن متبرعين متوافقين بكفاءة.",
     callAction: "اتصل بالمتبرع",
     aboutApp: "حول هذا الموقع",
     eligibilityTitle: "شروط أهلية التبرع بالدم",
+    arcAboutTitle: "لمحة عن الهلال الأحمر",
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -258,10 +277,13 @@ export const TRANSLATIONS = {
     male: "Homme",
     female: "Femme",
     whatsappContact: "Contactez-nous",
+    supportContact: "Contacter le support",
+    ourLocation: "Notre localisation",
     pageTitle: "Gouttes d’Espoir - Banque des donneurs",
     metaDescription: "Un site web professionnel et moderne pour le Croissant-Rouge Algérien – Comité de Wilaya de Sidi Bel Abbès, visant à enregistrer de nouveaux donneurs de sang et à rechercher efficacement des donneurs compatibles.",
     callAction: "Appeler le donneur",
     aboutApp: "À propos de cette application",
     eligibilityTitle: "Conditions d’éligibilité",
+    arcAboutTitle: "Aperçu du Croissant-Rouge",
   }
 };

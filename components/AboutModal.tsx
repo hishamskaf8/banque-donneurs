@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, ABOUT_CONTENT } from '../constants';
@@ -48,14 +49,17 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
                 {section.title}
               </h3>
               {section.content && (
-                <p className="text-[#0F172A] leading-relaxed whitespace-pre-line text-base font-bold">{section.content}</p>
+                <p 
+                  className="text-[#0F172A] leading-relaxed whitespace-pre-line text-base font-bold text-justify"
+                  dangerouslySetInnerHTML={{ __html: section.content }}
+                ></p>
               )}
               {section.list && (
                 <ul className="space-y-4 mt-4">
                   {section.list.map((item, i) => (
-                    <li key={i} className="flex gap-4 text-[#334155] text-base leading-relaxed font-bold">
+                    <li key={i} className="flex gap-4 text-[#334155] text-base leading-relaxed font-bold text-justify">
                         <span className="flex-shrink-0 w-2 h-2 rounded-full bg-[#0D9488] mt-2.5"></span>
-                        {item}
+                        <span className="text-justify">{item}</span>
                     </li>
                   ))}
                 </ul>

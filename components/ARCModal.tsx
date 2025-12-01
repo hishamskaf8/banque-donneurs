@@ -2,19 +2,23 @@
 
 import React from 'react';
 import type { Language } from '../types';
-import { TRANSLATIONS, ELIGIBILITY_CONTENT } from '../constants';
+import { TRANSLATIONS, ARC_CONTENT } from '../constants';
 
-interface EligibilityModalProps {
+interface ARCModalProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
 }
 
-const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, language }) => {
+const ARCModal: React.FC<ARCModalProps> = ({ isOpen, onClose, language }) => {
   if (!isOpen) return null;
 
   const t = TRANSLATIONS[language];
-  const content = ELIGIBILITY_CONTENT[language];
+  // We can display both languages or just the active one. The request implies showing the content "based on interface" or as provided.
+  // The provided content in prompt had both "Aperçu en français" and "لمحة بالعربية". 
+  // We will display the content relevant to the current language, or all if preferred.
+  // Based on structure of other modals, we show `ARC_CONTENT[language]`.
+  const content = ARC_CONTENT[language];
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -31,11 +35,13 @@ const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, la
         <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 bg-white sticky top-0 z-10">
           <h2 className="text-xl font-bold text-[#0F172A] flex items-center gap-3 tracking-tight">
             <span className="p-2 bg-red-100 rounded-lg text-[#D61F1F]">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" 
+                    alt="ARC Logo" 
+                    className="w-6 h-6"
+                />
             </span>
-            {t.eligibilityTitle}
+            {t.arcAboutTitle}
           </h2>
           <button 
             onClick={onClose}
@@ -57,21 +63,9 @@ const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, la
                 </h3>
               )}
               {section.content && (
-                <p className="text-[#0F172A] leading-relaxed text-base font-bold mb-3 text-justify">
+                <p className="text-[#0F172A] leading-relaxed text-base font-bold mb-3 whitespace-pre-line text-justify">
                     {section.content}
                 </p>
-              )}
-              {section.list && (
-                <ul className="space-y-3 mt-2">
-                  {section.list.map((item, i) => (
-                    <li key={i} className="flex gap-3 text-slate-700 text-base leading-relaxed font-bold">
-                        <svg className="w-5 h-5 text-[#0D9488] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span className="text-justify">{item}</span>
-                    </li>
-                  ))}
-                </ul>
               )}
             </div>
           ))}
@@ -92,4 +86,4 @@ const EligibilityModal: React.FC<EligibilityModalProps> = ({ isOpen, onClose, la
   );
 };
 
-export default EligibilityModal;
+export default ARCModal;
