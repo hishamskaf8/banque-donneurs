@@ -183,14 +183,12 @@ export const ELIGIBILITY_CONTENT = {
 export const ARC_CONTENT = {
   fr: [
     {
-      title: "Aperçu en français",
       content: "Le Croissant-Rouge Algérien est une organisation humanitaire nationale fondée en 1956, opérant selon les principes du Mouvement international de la Croix-Rouge et du Croissant-Rouge. Sa mission consiste à apporter une aide aux personnes vulnérables sans discrimination, à renforcer la solidarité, à intervenir lors des urgences et des catastrophes, ainsi qu’à soutenir la santé publique. L’organisation s’appuie sur un vaste réseau de bénévoles présents dans toutes les wilayas du pays, faisant d’elle un acteur essentiel de l’action humanitaire en Algérie."
     }
   ],
   ar: [
     {
-      title: "لمحة بالعربية",
-      content: "الهلال الأحمر الجزائري جمعية إنسانية وطنية تأسست عام 1956، وتعتمد على مبادئ الحركة الدولية للصليب الأحمر والهلال الأحمر. يعمل بهدف تقديم المساعدة للمحتاجين دون تمييز، وتعزيز التضامن، والاستجابة للطوارئ والكاتastrofes، إضافة إلى دعم الصحة العمومية والتكفل بالفئات الهشة. يعتمد في نشاطاته على شبكة واسعة من المتطوعين عبر جميع ولايات الجزائر، ويُعد قوة أساسية في العمل الإغاثي والإنساني داخل البلاد."
+      content: "الهلال الأحمر الجزائري جمعية إنسانية وطنية تأسست عام 1956، وتعتمد على مبادئ الحركة الدولية للصليب الأحمر والهلال الأحمر. يعمل بهدف تقديم المساعدة للمحتاجين دون تمييز، وتعزيز التضامن، والاستجابة للطوارئ والكوارث، إضافة إلى دعم الصحة العمومية والتكفل بالفئات الهشة. يعتمد في نشاطاته على شبكة واسعة من المتطوعين عبر جميع ولايات الجزائر، ويُعد قوة أساسية في العمل الإغاثي والإنساني داخل البلاد."
     }
   ]
 };

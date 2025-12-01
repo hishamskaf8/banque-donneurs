@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, ARC_CONTENT } from '../constants';
@@ -12,7 +13,8 @@ const ARCModal: React.FC<ARCModalProps> = ({ isOpen, onClose, language }) => {
   if (!isOpen) return null;
 
   const t = TRANSLATIONS[language];
-  const content = ARC_CONTENT[language];
+  // Cast to allow optional title property which might not be present in the inferred type
+  const content = ARC_CONTENT[language] as Array<{ title?: string; content: string }>;
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
