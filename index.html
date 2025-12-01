@@ -25,6 +25,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Cairo', 'Outfit', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
     <style>
       :root {
         --font-latin: 'Outfit', sans-serif;
@@ -36,6 +48,14 @@
         --brand-dark: #0F172A;     /* Deep Navy - Structure */
         --brand-accent: #0D9488;   /* Sharp Teal - Balance */
         --brand-bg: #FFFFFF;       /* Pure White - Purity */
+        --brand-text: #0F172A;
+      }
+
+      /* Dark Mode Variables */
+      .dark {
+        --brand-bg: #020617;       /* Slate 950 */
+        --brand-text: #F1F5F9;     /* Slate 100 */
+        --brand-dark: #F8FAFC;     /* Invert for text */
       }
       
       body {
@@ -44,7 +64,8 @@
         -moz-osx-font-smoothing: grayscale;
         background-color: var(--brand-bg);
         overflow-x: hidden;
-        color: var(--brand-dark);
+        color: var(--brand-text);
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       
       /* Crisp Tech Pattern - No Fade */
@@ -54,6 +75,13 @@
           linear-gradient(to bottom, #F1F5F9 1px, transparent 1px);
         background-size: 40px 40px;
         background-color: #FFFFFF;
+      }
+
+      .dark .bg-grid-pattern {
+        background-image: 
+          linear-gradient(to right, #1E293B 1px, transparent 1px),
+          linear-gradient(to bottom, #1E293B 1px, transparent 1px);
+        background-color: #020617;
       }
 
       /* Arabic Typography */
@@ -80,9 +108,15 @@
       ::-webkit-scrollbar-track {
         background: #F8FAFC;
       }
+      .dark ::-webkit-scrollbar-track {
+        background: #0F172A;
+      }
       ::-webkit-scrollbar-thumb {
         background: #CBD5E1;
         border-radius: 5px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #334155;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #94A3B8;

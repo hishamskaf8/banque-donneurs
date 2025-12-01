@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Donor, Language } from '../types';
 import { TRANSLATIONS } from '../constants';
@@ -11,7 +10,7 @@ const PhoneIcon: React.FC = () => (
 );
 
 const SearchIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
     </svg>
 );
@@ -19,14 +18,14 @@ const SearchIcon: React.FC = () => (
 const BloodDropHero: React.FC = () => (
     <div className="relative mb-8 cursor-default flex justify-center">
         {/* Main Icon - Creative Liquid Drop */}
-        <div className="relative z-10 w-28 h-28 bg-[#D61F1F] rounded-full flex items-center justify-center shadow-xl border-4 border-white">
+        <div className="relative z-10 w-28 h-28 bg-[#D61F1F] rounded-full flex items-center justify-center shadow-xl border-4 border-white dark:border-slate-800">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 text-white" viewBox="0 0 24 24" fill="currentColor">
                 {/* Artistic Drop Shape */}
                 <path d="M12 21.5c-4.97 0-9-4.03-9-9 0-4.97 9-13 9-13s9 8.03 9 13c0 4.97-4.03 9-9 9z" />
             </svg>
         </div>
         {/* Sharp Badge */}
-        <div className="absolute top-0 -right-2 w-8 h-8 bg-[#0D9488] rounded-full border-4 border-white shadow-md"></div>
+        <div className="absolute top-0 -right-2 w-8 h-8 bg-[#0D9488] rounded-full border-4 border-white dark:border-slate-800 shadow-md"></div>
     </div>
 );
 
@@ -50,7 +49,7 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
 
   if (isLoading) {
     return (
-        <div className="flex flex-col items-center justify-center p-20 bg-white rounded-xl shadow-lg border border-slate-200 min-h-[400px]">
+        <div className="flex flex-col items-center justify-center p-20 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 min-h-[400px]">
             <LoadingSpinner />
             <p className="mt-6 text-[#D61F1F] font-bold tracking-wide text-lg">{t.loading}</p>
         </div>
@@ -60,16 +59,16 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
   // Initial State Design
   if (!hasSearched) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-white rounded-xl shadow-lg border-2 border-slate-100 text-center min-h-[500px]">
+      <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-white dark:bg-slate-800 rounded-xl shadow-lg border-2 border-slate-100 dark:border-slate-700 text-center min-h-[500px] transition-colors duration-300">
         
         <BloodDropHero />
         
         <div className="relative z-10 max-w-lg space-y-5">
-            <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] tracking-tight leading-tight">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] dark:text-white tracking-tight leading-tight">
                 {t.table.initialSearchMessage}
             </h3>
             <div className="w-20 h-1.5 bg-[#D61F1F] mx-auto rounded-full"></div>
-            <p className="text-slate-600 text-base font-medium leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-base font-medium leading-relaxed">
                 {t.searchNote}
             </p>
         </div>
@@ -78,13 +77,13 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
   }
 
   const NoResultsView = () => (
-    <div className="flex flex-col items-center gap-4 text-slate-400 py-16">
-        <div className="p-6 bg-slate-50 rounded-full border-2 border-slate-200">
+    <div className="flex flex-col items-center gap-4 text-slate-400 dark:text-slate-500 py-16">
+        <div className="p-6 bg-slate-50 dark:bg-slate-700 rounded-full border-2 border-slate-200 dark:border-slate-600">
             <SearchIcon />
         </div>
         <div className="text-center">
-            <p className="font-bold text-xl text-slate-800 mb-1">{t.table.noResults}</p>
-            <p className="text-base text-slate-600 font-medium">{t.table.noResultsHint}</p>
+            <p className="font-bold text-xl text-slate-800 dark:text-slate-200 mb-1">{t.table.noResults}</p>
+            <p className="text-base text-slate-600 dark:text-slate-400 font-medium">{t.table.noResultsHint}</p>
         </div>
     </div>
   );
@@ -93,7 +92,7 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
     <div className="space-y-6 animate-pop">
       {/* Results Header */}
       <div className="flex justify-between items-center px-2">
-        <h3 className="text-lg font-bold text-[#0F172A] flex items-center gap-2">
+        <h3 className="text-lg font-bold text-[#0F172A] dark:text-white flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-[#0D9488]"></span>
             {t.totalDonors}
         </h3>
@@ -102,11 +101,11 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
         </span>
       </div>
       
-      <div className="bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-colors duration-300">
         {/* Desktop Table */}
         <div className="hidden lg:block overflow-x-auto">
-            <table className="w-full text-sm text-start text-slate-700">
-            <thead className="text-xs text-[#0F172A] font-bold uppercase tracking-wider bg-slate-100 border-b-2 border-slate-200">
+            <table className="w-full text-sm text-start text-slate-700 dark:text-slate-300">
+            <thead className="text-xs text-[#0F172A] dark:text-white font-bold uppercase tracking-wider bg-slate-100 dark:bg-slate-900 border-b-2 border-slate-200 dark:border-slate-700">
                 <tr>
                 <th scope="col" className="px-8 py-5 text-start">{t.table.fullName}</th>
                 <th scope="col" className="px-6 py-5 text-start">{t.table.bloodGroup}</th>
@@ -117,12 +116,12 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                 <th scope="col" className="px-8 py-5 text-start">{t.table.notes}</th>
                 </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {donors.length > 0 ? donors.map((donor, index) => (
-                <tr key={`${donor.phone}-${index}`} className="bg-white hover:bg-red-50/30 transition-all duration-200 group border-b border-slate-50 last:border-0">
-                    <td className="px-8 py-5 font-bold text-[#0F172A] text-base whitespace-nowrap">
+                <tr key={`${donor.phone}-${index}`} className="bg-white dark:bg-slate-800 hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-all duration-200 group border-b border-slate-50 dark:border-slate-700 last:border-0">
+                    <td className="px-8 py-5 font-bold text-[#0F172A] dark:text-white text-base whitespace-nowrap">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-[#0F172A] font-bold text-sm border-2 border-slate-200 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors">
+                            <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[#0F172A] dark:text-white font-bold text-sm border-2 border-slate-200 dark:border-slate-600 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors">
                                 {donor.fullName.charAt(0)}
                             </div>
                             {donor.fullName}
@@ -133,9 +132,9 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                             {donor.bloodGroup}
                         </span>
                     </td>
-                    <td className="px-6 py-5 font-bold text-slate-700">{translateGender(donor.gender)}</td>
+                    <td className="px-6 py-5 font-bold text-slate-700 dark:text-slate-300">{translateGender(donor.gender)}</td>
                     <td className="px-6 py-5 font-bold">
-                        <span className="inline-block px-3 py-1 bg-slate-100 rounded text-slate-800 text-xs font-bold border border-slate-300">
+                        <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-300 dark:border-slate-600">
                             {donor.wilaya}
                         </span>
                     </td>
@@ -143,14 +142,14 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                     <a 
                         href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
                         title={t.callAction} 
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white text-[#0D9488] border-2 border-[#0D9488] rounded-lg font-bold hover:bg-[#0D9488] hover:text-white transition-all duration-200"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 text-[#0D9488] dark:text-teal-400 border-2 border-[#0D9488] dark:border-teal-400 rounded-lg font-bold hover:bg-[#0D9488] hover:text-white dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-200"
                     >
                         <PhoneIcon />
                         <span>{donor.phone}</span>
                     </a>
                     </td>
-                    <td className="px-6 py-5 text-slate-800 font-bold font-mono text-xs">{donor.lastDonation || '-'}</td>
-                    <td className="px-8 py-5 max-w-xs truncate text-slate-500 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
+                    <td className="px-6 py-5 text-slate-800 dark:text-slate-300 font-bold font-mono text-xs">{donor.lastDonation || '-'}</td>
+                    <td className="px-8 py-5 max-w-xs truncate text-slate-500 dark:text-slate-400 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
                 </tr>
                 )) : (
                 <tr>
@@ -164,34 +163,34 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
         </div>
 
         {/* Mobile Card View (High Contrast) */}
-        <div className="lg:hidden bg-slate-50 p-4 space-y-4">
+        <div className="lg:hidden bg-slate-50 dark:bg-slate-900 p-4 space-y-4">
             {donors.length > 0 ? donors.map((donor, index) => (
-            <div key={`${donor.phone}-${index}`} className="bg-white p-6 rounded-xl shadow-md border border-slate-200 relative overflow-hidden group">
+            <div key={`${donor.phone}-${index}`} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-2 h-full bg-[#D61F1F]"></div>
                 
                 <div className="flex justify-between items-start mb-5 pl-4">
                     <div>
-                        <h4 className="font-bold text-lg text-[#0F172A] leading-tight mb-2">{donor.fullName}</h4>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 text-slate-800 text-xs font-bold border border-slate-200">
+                        <h4 className="font-bold text-lg text-[#0F172A] dark:text-white leading-tight mb-2">{donor.fullName}</h4>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-600">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                             </svg>
                             {donor.wilaya}
                         </span>
                     </div>
-                    <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[#D61F1F] text-white rounded-xl font-bold text-2xl shadow-lg border-2 border-white">
+                    <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[#D61F1F] text-white rounded-xl font-bold text-2xl shadow-lg border-2 border-white dark:border-slate-800">
                         {donor.bloodGroup}
                     </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6 pl-4">
-                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-0.5">{t.table.gender}</span>
-                        <span className="font-bold text-[#0F172A] text-sm">{translateGender(donor.gender)}</span>
+                    <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.gender}</span>
+                        <span className="font-bold text-[#0F172A] dark:text-white text-sm">{translateGender(donor.gender)}</span>
                     </div>
-                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span className="text-[10px] text-slate-500 uppercase font-bold block mb-0.5">{t.table.lastDonation}</span>
-                        <span className="font-bold text-[#0F172A] text-sm">{donor.lastDonation || '-'}</span>
+                    <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.lastDonation}</span>
+                        <span className="font-bold text-[#0F172A] dark:text-white text-sm">{donor.lastDonation || '-'}</span>
                     </div>
                 </div>
 

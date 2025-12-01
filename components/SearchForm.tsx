@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, WILAYAS_FR } from '../constants';
@@ -25,13 +24,13 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
 
   return (
     <div className="relative mb-10">
-        <div className="relative bg-white rounded-xl shadow-xl border-2 border-slate-100 p-6 md:p-8 overflow-hidden">
+        <div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-xl border-2 border-slate-100 dark:border-slate-700 p-6 md:p-8 overflow-hidden transition-colors duration-300">
             {/* Top Accent Line - Sharp */}
             <div className="absolute top-0 left-0 w-full h-2 bg-[#D61F1F]"></div>
             
             <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-[#0F172A] flex items-center gap-3 mb-3">
+                    <h2 className="text-2xl font-bold text-[#0F172A] dark:text-white flex items-center gap-3 mb-3">
                         <span className="p-2 bg-red-600 text-white rounded-lg shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -39,7 +38,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                         </span>
                         {t.searchTitle}
                     </h2>
-                    <p className="text-sm text-slate-600 font-medium leading-relaxed max-w-2xl">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed max-w-2xl">
                         {t.searchNote}
                     </p>
                 </div>
@@ -49,18 +48,18 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                 
                 {/* Blood Group Filter */}
                 <div className="lg:col-span-3 space-y-2">
-                    <label htmlFor="bloodGroup" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.bloodGroup}</label>
+                    <label htmlFor="bloodGroup" className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300">{t.bloodGroup}</label>
                     <div className="relative">
                         <select
                             id="bloodGroup"
                             value={bloodGroup}
                             onChange={(e) => setBloodGroup(e.target.value)}
-                            className="w-full pl-4 pr-10 py-3.5 bg-white border-2 border-slate-300 text-[#0F172A] font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] block appearance-none transition-all duration-200 cursor-pointer hover:border-slate-400"
+                            className="w-full pl-4 pr-10 py-3.5 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-600 text-[#0F172A] dark:text-white font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] dark:focus:border-red-500 block appearance-none transition-all duration-200 cursor-pointer hover:border-slate-400 dark:hover:border-slate-500"
                         >
                             <option value="">{t.allBloodGroups}</option>
                             {bloodGroups.map(group => <option key={group} value={group}>{group}</option>)}
                         </select>
-                        <div className={`pointer-events-none absolute inset-y-0 ${language === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center px-2 text-slate-800`}>
+                        <div className={`pointer-events-none absolute inset-y-0 ${language === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center px-2 text-slate-800 dark:text-slate-300`}>
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
@@ -68,13 +67,13 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
 
                 {/* Wilaya Filter */}
                 <div className="lg:col-span-4 space-y-2">
-                    <label htmlFor="wilaya" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.wilaya}</label>
+                    <label htmlFor="wilaya" className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300">{t.wilaya}</label>
                     <div className="relative">
                         <select
                             id="wilaya"
                             value={wilaya}
                             onChange={(e) => setWilaya(e.target.value)}
-                            className="w-full pl-4 pr-10 py-3.5 bg-white border-2 border-slate-300 text-[#0F172A] font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] block appearance-none transition-all duration-200 cursor-pointer hover:border-slate-400"
+                            className="w-full pl-4 pr-10 py-3.5 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-600 text-[#0F172A] dark:text-white font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] dark:focus:border-red-500 block appearance-none transition-all duration-200 cursor-pointer hover:border-slate-400 dark:hover:border-slate-500"
                         >
                             <option value="">{t.allWilayas}</option>
                             {WILAYAS_FR.map(w => (
@@ -83,7 +82,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                             </option>
                             ))}
                         </select>
-                        <div className={`pointer-events-none absolute inset-y-0 ${language === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center px-2 text-slate-800`}>
+                        <div className={`pointer-events-none absolute inset-y-0 ${language === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center px-2 text-slate-800 dark:text-slate-300`}>
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
@@ -91,14 +90,14 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
 
                 {/* Search Term Input */}
                 <div className="lg:col-span-3 space-y-2">
-                    <label htmlFor="searchTerm" className="text-xs font-bold uppercase tracking-wider text-slate-800">{t.searchTerm}</label>
+                    <label htmlFor="searchTerm" className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300">{t.searchTerm}</label>
                     <input
                         id="searchTerm"
                         type="text"
                         placeholder={t.searchPlaceholder}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full px-4 py-3.5 bg-white border-2 border-slate-300 text-[#0F172A] font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] transition-all duration-200 placeholder-slate-500"
+                        className="w-full px-4 py-3.5 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-600 text-[#0F172A] dark:text-white font-bold rounded-lg focus:ring-0 focus:border-[#D61F1F] dark:focus:border-red-500 transition-all duration-200 placeholder-slate-500 dark:placeholder-slate-400"
                     />
                 </div>
 
@@ -114,7 +113,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ language, bloodGroups, onSearch
                         type="button"
                         onClick={onRefresh}
                         disabled={isLoading}
-                        className="px-4 py-3.5 text-slate-700 bg-white border-2 border-slate-300 rounded-lg hover:bg-slate-50 hover:text-[#D61F1F] hover:border-[#D61F1F] shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-3.5 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#D61F1F] dark:hover:text-red-400 hover:border-[#D61F1F] dark:hover:border-red-400 shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                         title={t.refreshButton}
                     >
                         {isLoading ? <LoadingSpinner/> :

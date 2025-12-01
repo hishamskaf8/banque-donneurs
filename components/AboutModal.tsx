@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, ABOUT_CONTENT } from '../constants';
@@ -20,19 +18,19 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       {/* Backdrop - Solid opacity, no blur */}
       <div 
-        className="absolute inset-0 bg-slate-900/90 transition-opacity duration-300"
+        className="absolute inset-0 bg-slate-900/90 dark:bg-black/90 transition-opacity duration-300"
         onClick={onClose}
       ></div>
 
-      {/* Modal Content - Crisp White */}
-      <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col animate-pop border-4 border-[#D61F1F]">
+      {/* Modal Content - Crisp White/Dark */}
+      <div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col animate-pop border-4 border-[#D61F1F]">
         
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 bg-white sticky top-0 z-10">
-          <h2 className="text-xl font-bold text-[#0F172A] tracking-tight">{t.aboutApp}</h2>
+        <div className="flex justify-between items-center p-6 border-b-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 sticky top-0 z-10">
+          <h2 className="text-xl font-bold text-[#0F172A] dark:text-white tracking-tight">{t.aboutApp}</h2>
           <button 
             onClick={onClose}
-            className="text-slate-400 hover:text-[#D61F1F] transition-colors p-2 rounded-full hover:bg-red-50"
+            className="text-slate-400 dark:text-slate-500 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors p-2 rounded-full hover:bg-red-50 dark:hover:bg-slate-700"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
@@ -41,24 +39,24 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         </div>
 
         {/* Scrollable Body */}
-        <div className="p-8 overflow-y-auto custom-scrollbar bg-white">
+        <div className="p-8 overflow-y-auto custom-scrollbar bg-white dark:bg-slate-800">
           {content.map((section, index) => (
             <div key={index} className="mb-10 last:mb-0">
-              <h3 className="text-lg font-bold text-[#D61F1F] mb-4 inline-flex items-center gap-2 uppercase tracking-wide">
-                <span className="w-3 h-3 rounded-none bg-[#D61F1F]"></span>
+              <h3 className="text-lg font-bold text-[#D61F1F] dark:text-red-400 mb-4 inline-flex items-center gap-2 uppercase tracking-wide">
+                <span className="w-3 h-3 rounded-none bg-[#D61F1F] dark:bg-red-400"></span>
                 {section.title}
               </h3>
               {section.content && (
                 <p 
-                  className="text-[#0F172A] leading-relaxed whitespace-pre-line text-base font-bold text-justify"
+                  className="text-[#0F172A] dark:text-slate-200 leading-relaxed whitespace-pre-line text-base font-bold text-justify"
                   dangerouslySetInnerHTML={{ __html: section.content }}
                 ></p>
               )}
               {section.list && (
                 <ul className="space-y-4 mt-4">
                   {section.list.map((item, i) => (
-                    <li key={i} className="flex gap-4 text-[#334155] text-base leading-relaxed font-bold text-justify">
-                        <span className="flex-shrink-0 w-2 h-2 rounded-full bg-[#0D9488] mt-2.5"></span>
+                    <li key={i} className="flex gap-4 text-[#334155] dark:text-slate-300 text-base leading-relaxed font-bold text-justify">
+                        <span className="flex-shrink-0 w-2 h-2 rounded-full bg-[#0D9488] dark:bg-teal-400 mt-2.5"></span>
                         <span className="text-justify">{item}</span>
                     </li>
                   ))}
@@ -69,10 +67,10 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, language }) =>
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t-2 border-slate-100 bg-slate-50 flex justify-end">
+        <div className="p-6 border-t-2 border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 flex justify-end">
           <button
             onClick={onClose}
-            className="px-8 py-3 bg-[#0F172A] text-white rounded-lg font-bold hover:bg-[#1E293B] transition-colors shadow-lg"
+            className="px-8 py-3 bg-[#0F172A] dark:bg-slate-700 text-white rounded-lg font-bold hover:bg-[#1E293B] dark:hover:bg-slate-600 transition-colors shadow-lg"
           >
             {language === 'ar' ? 'إغلاق' : 'Fermer'}
           </button>
