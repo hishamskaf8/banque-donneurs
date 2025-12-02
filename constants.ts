@@ -40,7 +40,7 @@ export const ABOUT_CONTENT = {
     },
     {
       title: "Développement de l’application",
-      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par <span class=\"font-black text-lg mx-1\">Skaf Hisham</span> pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
+      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par <span class=\"font-black text-lg mx-1\">Skaf Hisham</span>, <span class=\"font-black text-lg mx-1\">TOUFAN Mohammed</span> et <span class=\"font-black text-lg mx-1\">Imene AHMED OMAR</span> pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
     },
     {
       title: "Principales fonctionnalités",
@@ -88,7 +88,7 @@ export const ABOUT_CONTENT = {
     },
     {
       title: "تطوير التطبيق",
-      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل <span class=\"font-black text-lg mx-1\">سكاف هشام</span> لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
+      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل <span class=\"font-black text-lg mx-1\">سكاف هشام</span> و <span class=\"font-black text-lg mx-1\">طوفان محمد</span> و <span class=\"font-black text-lg mx-1\">إيمان أحمد عمر</span> لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
     },
     {
       title: "أهم الميزات",
