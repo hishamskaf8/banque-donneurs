@@ -50,21 +50,40 @@ const ARCModal: React.FC<ARCModalProps> = ({ isOpen, onClose, language }) => {
         </div>
 
         {/* Scrollable Body */}
-        <div className="p-8 overflow-y-auto custom-scrollbar bg-white dark:bg-slate-800">
-          {content.map((section, index) => (
-            <div key={index} className="mb-8 last:mb-0 p-6 bg-slate-50 dark:bg-slate-700 rounded-xl border-2 border-slate-100 dark:border-slate-600">
-              {section.title && (
-                <h3 className="text-lg font-bold text-[#D61F1F] dark:text-red-400 mb-4 uppercase tracking-wide">
-                    {section.title}
-                </h3>
-              )}
-              {section.content && (
-                <p className="text-[#0F172A] dark:text-white leading-relaxed text-base font-bold mb-3 whitespace-pre-line text-justify">
-                    {section.content}
-                </p>
-              )}
-            </div>
-          ))}
+        <div className="p-0 overflow-y-auto custom-scrollbar bg-white dark:bg-slate-800">
+          
+          {/* Hero Visual Section to break monotony */}
+          <div className="bg-gradient-to-br from-red-50 to-white dark:from-slate-900 dark:to-slate-800 p-8 flex justify-center items-center border-b border-slate-100 dark:border-slate-700">
+             <div className="relative w-32 h-32 flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#D61F1F]/10 dark:bg-[#D61F1F]/20 rounded-full animate-pulse-ring"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-[#D61F1F] relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="absolute -bottom-2 -right-2 bg-white dark:bg-slate-800 p-2 rounded-full shadow-md">
+                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#0D9488]" viewBox="0 0 20 20" fill="currentColor">
+                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                   </svg>
+                </div>
+             </div>
+          </div>
+
+          <div className="p-8">
+            {content.map((section, index) => (
+              <div key={index} className="mb-8 last:mb-0 p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300">
+                {section.title && (
+                  <h3 className="text-lg font-bold text-[#D61F1F] dark:text-red-400 mb-4 uppercase tracking-wide flex items-center gap-2">
+                      <span className="w-1.5 h-6 bg-[#D61F1F] rounded-full"></span>
+                      {section.title}
+                  </h3>
+                )}
+                {section.content && (
+                  <p className="text-[#0F172A] dark:text-white leading-relaxed text-base font-bold mb-0 whitespace-pre-line text-justify">
+                      {section.content}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Footer */}
