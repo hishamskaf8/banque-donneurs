@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS } from '../constants';
@@ -8,11 +9,12 @@ interface HeaderProps {
   onOpenAbout: () => void;
   onOpenEligibility: () => void;
   onOpenARC: () => void;
+  onOpenDownload: () => void;
   isDarkMode: boolean;
   toggleTheme: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, isDarkMode, toggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, onOpenDownload, isDarkMode, toggleTheme }) => {
   const t = TRANSLATIONS[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -177,13 +179,28 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
                   </div>
                   {t.arcAboutTitle}
                 </button>
+                
+                <button
+                  onClick={() => {
+                    onOpenDownload();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3"
+                >
+                  <div className="p-1.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300 group-hover:text-[#D61F1F]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                    </svg>
+                  </div>
+                  {t.downloadApp}
+                </button>
 
                 <button
                   onClick={() => {
                     onOpenAbout();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3"
+                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700"
                 >
                   <div className="p-1.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300 group-hover:text-[#D61F1F]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">

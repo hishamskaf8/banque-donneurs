@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Donor, Language } from './types';
 import { TRANSLATIONS, BLOOD_GROUPS, WILAYAS_MAP_FR_TO_AR, GOOGLE_FORM_URL } from './constants';
@@ -9,6 +10,7 @@ import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
 import EligibilityModal from './components/EligibilityModal';
 import ARCModal from './components/ARCModal';
+import DownloadModal from './components/DownloadModal';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -20,6 +22,7 @@ const App: React.FC = () => {
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
   const [isEligibilityOpen, setIsEligibilityOpen] = useState<boolean>(false);
   const [isARCOpen, setIsARCOpen] = useState<boolean>(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   // Initialize Theme
@@ -184,6 +187,7 @@ const App: React.FC = () => {
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenEligibility={() => setIsEligibilityOpen(true)}
         onOpenARC={() => setIsARCOpen(true)}
+        onOpenDownload={() => setIsDownloadOpen(true)}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
       />
@@ -246,6 +250,12 @@ const App: React.FC = () => {
       <ARCModal
         isOpen={isARCOpen}
         onClose={() => setIsARCOpen(false)}
+        language={language}
+      />
+      
+      <DownloadModal
+        isOpen={isDownloadOpen}
+        onClose={() => setIsDownloadOpen(false)}
         language={language}
       />
     </div>

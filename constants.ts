@@ -193,6 +193,21 @@ export const ARC_CONTENT = {
   ]
 };
 
+export const DOWNLOAD_CONTENT = {
+  fr: {
+    title: "Télécharger l'application mobile",
+    description: "Profitez d'une expérience plus fluide, stable et restez connecté en permanence. Téléchargez l'application officielle pour accéder rapidement aux services de don et recevoir des notifications en temps réel.",
+    buttonText: "Télécharger maintenant",
+    url: "https://apkpure.com/p/com.cra.dondesang"
+  },
+  ar: {
+    title: "تحميل التطبيق الرسمي",
+    description: "للحصول على تجربة مستخدم أفضل وأكثر استقراراً، يمكنكم تحميل التطبيق الرسمي الخاص بالتبرع بالدم. يتيح التطبيق وصولاً سريعاً للخدمات وإشعارات فورية بالحملات.",
+    buttonText: "حمل التطبيق الآن",
+    url: "https://apkpure.com/p/com.cra.dondesang"
+  }
+};
+
 export const TRANSLATIONS = {
   ar: {
     mainTitle: "الهلال الأحمر الجزائري",
@@ -238,6 +253,7 @@ export const TRANSLATIONS = {
     aboutApp: "حول هذا الموقع",
     eligibilityTitle: "شروط أهلية التبرع بالدم",
     arcAboutTitle: "لمحة عن الهلال الأحمر",
+    downloadApp: "تحميل التطبيق",
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -283,5 +299,6 @@ export const TRANSLATIONS = {
     aboutApp: "À propos de cette application",
     eligibilityTitle: "Conditions d’éligibilité",
     arcAboutTitle: "Aperçu du Croissant-Rouge",
+    downloadApp: "Télécharger l'application",
   }
 };
