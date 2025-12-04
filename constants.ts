@@ -196,13 +196,13 @@ export const ARC_CONTENT = {
 export const DOWNLOAD_CONTENT = {
   fr: {
     title: "Télécharger l'application mobile",
-    description: "Profitez d'une expérience plus fluide, stable et restez connecté en permanence. Téléchargez l'application officielle pour accéder rapidement aux services de don et recevoir des notifications en temps réel.",
+    description: "Profitez d'une expérience plus fluide, stable et restez connecté en permanence. Téléchargez notre application officielle pour accéder rapidement aux services de don.\n\nNote : Si vous rencontrez des difficultés pour accéder à la page de téléchargement, essayez d'utiliser un VPN approprié.",
     buttonText: "Télécharger maintenant",
     url: "https://apkpure.com/p/com.cra.dondesang"
   },
   ar: {
     title: "تحميل التطبيق الرسمي",
-    description: "للحصول على تجربة مستخدم أفضل وأكثر استقراراً، يمكنكم تحميل التطبيق الرسمي الخاص بالتبرع بالدم. يتيح التطبيق وصولاً سريعاً للخدمات وإشعارات فورية بالحملات.",
+    description: "للحصول على تجربة مستخدم أفضل وأكثر استقراراً، يمكنكم تحميل التطبيق الرسمي الخاص بنا. يتيح التطبيق وصولاً سريعاً للخدمات.\n\nملاحظة: عند مواجهة أية مشكلات في الوصول لصفحة التحميل جرب استخدام VPN مناسب.",
     buttonText: "حمل التطبيق الآن",
     url: "https://apkpure.com/p/com.cra.dondesang"
   }

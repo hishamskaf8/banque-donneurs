@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, DOWNLOAD_CONTENT } from '../constants';
@@ -66,7 +67,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, language
             <h2 className="text-2xl font-bold text-[#0F172A] dark:text-white mb-4 leading-tight">
                 {content.title}
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base font-medium leading-relaxed mb-8">
+            <p className="text-slate-600 dark:text-slate-300 text-base font-medium leading-relaxed mb-8 whitespace-pre-line">
                 {content.description}
             </p>
 
