@@ -10,11 +10,12 @@ interface HeaderProps {
   onOpenEligibility: () => void;
   onOpenARC: () => void;
   onOpenDownload: () => void;
+  onOpenStats: () => void;
   isDarkMode: boolean;
   toggleTheme: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, onOpenDownload, isDarkMode, toggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, onOpenDownload, onOpenStats, isDarkMode, toggleTheme }) => {
   const t = TRANSLATIONS[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -149,13 +150,28 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
                             : (language === 'ar' ? 'الوضع الليلي' : 'Mode Sombre')}
                    </span>
                 </button>
+
+                <button
+                  onClick={() => {
+                    onOpenStats();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700 md:border-t-0"
+                >
+                  <div className="p-1.5 bg-red-100 dark:bg-red-900/30 rounded text-[#D61F1F] dark:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  {t.statsDashboard}
+                </button>
                 
                 <button
                   onClick={() => {
                     onOpenEligibility();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700 md:border-t-0"
+                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3"
                 >
                   <div className="p-1.5 bg-red-100 dark:bg-red-900/30 rounded text-[#D61F1F] dark:text-red-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">

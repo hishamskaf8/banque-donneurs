@@ -1,5 +1,4 @@
 
-
 export const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScaVCcBV32iBwj2qWnkh0Ds5IfLYyWroDnQfjjlzrsz3K6oiQ/viewform?usp=header';
 export const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmbM3HyrZZMS1ukgzdPH2Kx60iMQb8Je3Cuxl6EAZgzTEL6K31yO9h5qobj_RexjI0Ww9iojcL5QvF/pub?gid=1898439372&single=true&output=csv';
 
@@ -237,6 +236,9 @@ export const TRANSLATIONS = {
       noResults: "لم يتم العثور على نتائج.",
       noResultsHint: "حاول تعديل معايير البحث أو تحديث البيانات.",
       initialSearchMessage: "ابحث عن احتياجك الدموي",
+      ineligible: "غير متاح للتبرع",
+      ineligibleReason: "يجب انقضاء 4 أشهر على الأقل منذ آخر تبرع.",
+      eligible: "متاح للتبرع",
     },
     footerContact: "اتصل بنا",
     footerRights: "الهلال الأحمر الجزائري - سيدي بلعباس. جميع الحقوق محفوظة 2025 ©",
@@ -254,6 +256,17 @@ export const TRANSLATIONS = {
     eligibilityTitle: "شروط أهلية التبرع بالدم",
     arcAboutTitle: "لمحة عن الهلال الأحمر",
     downloadApp: "تحميل التطبيق",
+    statsDashboard: "لوحة الإحصائيات",
+    stats: {
+      title: "إحصائيات بنك المتبرعين",
+      totalDonors: "إجمالي المتبرعين",
+      mostAvailable: "الفصيلة الأكثر تواجداً",
+      distribution: "توزيع فصائل الدم",
+      specialNote: "نداء خاص",
+      oNegAdvice: "أصحاب فصيلة O-: أنتم متبرعون عالميون ومنقذون حقيقيون في الحالات الطارئة. حاجتنا لمساهمتكم دائمة ومستمرة!",
+      successRate: "معدل الاستجابة",
+      donorActivity: "نشاط المتبرعين",
+    }
   },
   fr: {
     mainTitle: "Croissant-Rouge Algérien",
@@ -283,6 +296,9 @@ export const TRANSLATIONS = {
       noResults: "Aucun résultat trouvé.",
       noResultsHint: "Essayez de modifier vos critères de recherche ou d'actualiser les données.",
       initialSearchMessage: "Recherchez votre besoin en sang",
+      ineligible: "Non éligible",
+      ineligibleReason: "Il doit s'écouler au moins 4 mois depuis le dernier don.",
+      eligible: "Éligible au don",
     },
     footerContact: "Nous contacter",
     footerRights: "Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés 2025 ©",
@@ -300,5 +316,16 @@ export const TRANSLATIONS = {
     eligibilityTitle: "Conditions d’éligibilité",
     arcAboutTitle: "Aperçu du Croissant-Rouge",
     downloadApp: "Télécharger l'application",
+    statsDashboard: "Tableau de bord",
+    stats: {
+      title: "Statistiques de la banque",
+      totalDonors: "Total des donneurs",
+      mostAvailable: "Groupe le plus fréquent",
+      distribution: "Distribution des groupes",
+      specialNote: "Note Spéciale",
+      oNegAdvice: "Donneurs O- : Votre sang est universel et vital en urgence. Votre contribution est une ressource inestimable pour notre communauté !",
+      successRate: "Taux de réponse",
+      donorActivity: "Activité des donneurs",
+    }
   }
 };

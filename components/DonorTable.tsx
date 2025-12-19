@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Donor, Language } from '../types';
 import { TRANSLATIONS } from '../constants';
@@ -6,6 +7,12 @@ import LoadingSpinner from './LoadingSpinner';
 const PhoneIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+  </svg>
+);
+
+const WaitIcon: React.FC = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
@@ -39,6 +46,39 @@ interface DonorTableProps {
 
 const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, isLoading, hasSearched }) => {
   const t = TRANSLATIONS[language];
+
+  // Helper function to check eligibility (4 months rule)
+  const isEligibleToDonate = (lastDonationStr: string): boolean => {
+    if (!lastDonationStr || lastDonationStr === '-') return true;
+
+    // Try to parse different date formats
+    const parseDate = (str: string) => {
+        // Handle DD/MM/YYYY
+        const dmy = str.split('/');
+        if (dmy.length === 3) {
+            return new Date(parseInt(dmy[2]), parseInt(dmy[1]) - 1, parseInt(dmy[0]));
+        }
+        // Fallback for native Date parsing
+        return new Date(str);
+    };
+
+    const lastDate = parseDate(lastDonationStr);
+    if (isNaN(lastDate.getTime())) return true; // Default to eligible if date is malformed
+
+    const today = new Date();
+    
+    // Calculate difference in months
+    let months = (today.getFullYear() - lastDate.getFullYear()) * 12;
+    months -= lastDate.getMonth();
+    months += today.getMonth();
+
+    // Fine-tune if the day of month hasn't passed yet
+    if (today.getDate() < lastDate.getDate()) {
+        months--;
+    }
+
+    return months >= 4;
+  };
 
   const translateGender = (gender: string) => {
     const lowerCaseGender = gender.toLowerCase().trim();
@@ -117,41 +157,59 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                 </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
-                {donors.length > 0 ? donors.map((donor, index) => (
-                <tr key={`${donor.phone}-${index}`} className="bg-white dark:bg-slate-800 hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-all duration-200 group border-b border-slate-50 dark:border-slate-700 last:border-0">
-                    <td className="px-8 py-5 font-bold text-[#0F172A] dark:text-white text-base whitespace-nowrap">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[#0F172A] dark:text-white font-bold text-sm border-2 border-slate-200 dark:border-slate-600 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors">
-                                {donor.fullName.charAt(0)}
+                {donors.length > 0 ? donors.map((donor, index) => {
+                  const eligible = isEligibleToDonate(donor.lastDonation);
+                  return (
+                    <tr key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-all duration-200 group border-b border-slate-50 dark:border-slate-700 last:border-0 ${!eligible ? 'opacity-50 grayscale select-none' : ''}`}>
+                        <td className="px-8 py-5 font-bold text-[#0F172A] dark:text-white text-base whitespace-nowrap">
+                            <div className="flex items-center gap-3">
+                                <div className={`w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[#0F172A] dark:text-white font-bold text-sm border-2 border-slate-200 dark:border-slate-600 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors ${!eligible ? 'bg-slate-200 dark:bg-slate-800 grayscale shadow-none' : ''}`}>
+                                    {donor.fullName.charAt(0)}
+                                </div>
+                                <div className="flex flex-col">
+                                  {donor.fullName}
+                                  {!eligible && <span className="text-[10px] text-[#D61F1F] dark:text-red-400 italic mt-0.5">{t.table.ineligible}</span>}
+                                </div>
                             </div>
-                            {donor.fullName}
-                        </div>
-                    </td>
-                    <td className="px-6 py-5">
-                        <span className="inline-flex items-center justify-center w-12 h-9 rounded bg-[#D61F1F] text-white font-bold shadow-sm">
-                            {donor.bloodGroup}
-                        </span>
-                    </td>
-                    <td className="px-6 py-5 font-bold text-slate-700 dark:text-slate-300">{translateGender(donor.gender)}</td>
-                    <td className="px-6 py-5 font-bold">
-                        <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-300 dark:border-slate-600">
-                            {donor.wilaya}
-                        </span>
-                    </td>
-                    <td className="px-6 py-5">
-                    <a 
-                        href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
-                        title={t.callAction} 
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 text-[#0D9488] dark:text-teal-400 border-2 border-[#0D9488] dark:border-teal-400 rounded-lg font-bold hover:bg-[#0D9488] hover:text-white dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-200"
-                    >
-                        <PhoneIcon />
-                        <span>{donor.phone}</span>
-                    </a>
-                    </td>
-                    <td className="px-6 py-5 text-slate-800 dark:text-slate-300 font-bold font-mono text-xs">{donor.lastDonation || '-'}</td>
-                    <td className="px-8 py-5 max-w-xs truncate text-slate-500 dark:text-slate-400 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
-                </tr>
-                )) : (
+                        </td>
+                        <td className="px-6 py-5">
+                            <span className={`inline-flex items-center justify-center w-12 h-9 rounded ${eligible ? 'bg-[#D61F1F]' : 'bg-slate-400 dark:bg-slate-600'} text-white font-bold shadow-sm`}>
+                                {donor.bloodGroup}
+                            </span>
+                        </td>
+                        <td className="px-6 py-5 font-bold text-slate-700 dark:text-slate-300">{translateGender(donor.gender)}</td>
+                        <td className="px-6 py-5 font-bold">
+                            <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-300 dark:border-slate-600">
+                                {donor.wilaya}
+                            </span>
+                        </td>
+                        <td className="px-6 py-5">
+                        {eligible ? (
+                          <a 
+                              href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
+                              title={t.callAction} 
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 text-[#0D9488] dark:text-teal-400 border-2 border-[#0D9488] dark:border-teal-400 rounded-lg font-bold hover:bg-[#0D9488] hover:text-white dark:hover:bg-teal-500 dark:hover:text-white transition-all duration-200"
+                          >
+                              <PhoneIcon />
+                              <span>{donor.phone}</span>
+                          </a>
+                        ) : (
+                          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-400 border-2 border-slate-200 dark:border-slate-600 rounded-lg font-bold cursor-not-allowed" title={t.table.ineligibleReason}>
+                              <WaitIcon />
+                              <span>{t.table.ineligible}</span>
+                          </div>
+                        )}
+                        </td>
+                        <td className="px-6 py-5 text-slate-800 dark:text-slate-300 font-bold font-mono text-xs">
+                          <div className="flex flex-col">
+                            {donor.lastDonation || '-'}
+                            {!eligible && <span className="text-[9px] text-[#D61F1F] dark:text-red-400 mt-1 max-w-[100px]">{t.table.ineligibleReason}</span>}
+                          </div>
+                        </td>
+                        <td className="px-8 py-5 max-w-xs truncate text-slate-500 dark:text-slate-400 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
+                    </tr>
+                  );
+                }) : (
                 <tr>
                     <td colSpan={7} className="text-center">
                     <NoResultsView />
@@ -164,45 +222,66 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
 
         {/* Mobile Card View (High Contrast) */}
         <div className="lg:hidden bg-slate-50 dark:bg-slate-900 p-4 space-y-4">
-            {donors.length > 0 ? donors.map((donor, index) => (
-            <div key={`${donor.phone}-${index}`} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-2 h-full bg-[#D61F1F]"></div>
-                
-                <div className="flex justify-between items-start mb-5 pl-4">
-                    <div>
-                        <h4 className="font-bold text-lg text-[#0F172A] dark:text-white leading-tight mb-2">{donor.fullName}</h4>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                            </svg>
-                            {donor.wilaya}
-                        </span>
+            {donors.length > 0 ? donors.map((donor, index) => {
+              const eligible = isEligibleToDonate(donor.lastDonation);
+              return (
+                <div key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 relative overflow-hidden group ${!eligible ? 'opacity-50 grayscale' : ''}`}>
+                    <div className={`absolute top-0 left-0 w-2 h-full ${eligible ? 'bg-[#D61F1F]' : 'bg-slate-400 dark:bg-slate-600'}`}></div>
+                    
+                    <div className="flex justify-between items-start mb-5 pl-4">
+                        <div>
+                            <h4 className="font-bold text-lg text-[#0F172A] dark:text-white leading-tight mb-2 flex items-center gap-2">
+                              {donor.fullName}
+                              {!eligible && <WaitIcon />}
+                            </h4>
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                </svg>
+                                {donor.wilaya}
+                            </span>
+                        </div>
+                        <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center ${eligible ? 'bg-[#D61F1F]' : 'bg-slate-400 dark:bg-slate-600'} text-white rounded-xl font-bold text-2xl shadow-lg border-2 border-white dark:border-slate-800`}>
+                            {donor.bloodGroup}
+                        </div>
                     </div>
-                    <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[#D61F1F] text-white rounded-xl font-bold text-2xl shadow-lg border-2 border-white dark:border-slate-800">
-                        {donor.bloodGroup}
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6 pl-4">
+                        <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                            <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.gender}</span>
+                            <span className="font-bold text-[#0F172A] dark:text-white text-sm">{translateGender(donor.gender)}</span>
+                        </div>
+                        <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                            <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.lastDonation}</span>
+                            <span className={`font-bold text-sm ${!eligible ? 'text-[#D61F1F] dark:text-red-400' : 'text-[#0F172A] dark:text-white'}`}>{donor.lastDonation || '-'}</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 mb-6 pl-4">
-                    <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
-                        <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.gender}</span>
-                        <span className="font-bold text-[#0F172A] dark:text-white text-sm">{translateGender(donor.gender)}</span>
-                    </div>
-                    <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
-                        <span className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-bold block mb-0.5">{t.table.lastDonation}</span>
-                        <span className="font-bold text-[#0F172A] dark:text-white text-sm">{donor.lastDonation || '-'}</span>
-                    </div>
-                </div>
 
-                <a 
-                    href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
-                    className="flex items-center justify-center gap-2 w-full py-4 bg-[#0D9488] text-white rounded-lg font-bold hover:bg-[#0F766E] transition-all duration-200 shadow-md active:translate-y-0.5"
-                >
-                    <PhoneIcon />
-                    <span>{t.callAction}</span>
-                </a>
-            </div>
-            )) : (
+                    {!eligible && (
+                      <div className="mb-4 pl-4 px-3 py-2 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-lg text-xs font-bold text-[#D61F1F] dark:text-red-400 text-center">
+                        {t.table.ineligibleReason}
+                      </div>
+                    )}
+
+                    {eligible ? (
+                      <a 
+                          href={`tel:${donor.phone.replace(/[^0-9+]/g, '')}`} 
+                          className="flex items-center justify-center gap-2 w-full py-4 bg-[#0D9488] text-white rounded-lg font-bold hover:bg-[#0F766E] transition-all duration-200 shadow-md active:translate-y-0.5"
+                      >
+                          <PhoneIcon />
+                          <span>{t.callAction}</span>
+                      </a>
+                    ) : (
+                      <div 
+                          className="flex items-center justify-center gap-2 w-full py-4 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-lg font-bold cursor-not-allowed border-2 border-dashed border-slate-400 dark:border-slate-600"
+                      >
+                          <WaitIcon />
+                          <span>{t.table.ineligible}</span>
+                      </div>
+                    )}
+                </div>
+              );
+            }) : (
             <div className="text-center py-10">
                 <NoResultsView />
             </div>

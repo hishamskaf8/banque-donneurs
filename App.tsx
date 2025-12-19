@@ -11,6 +11,7 @@ import AboutModal from './components/AboutModal';
 import EligibilityModal from './components/EligibilityModal';
 import ARCModal from './components/ARCModal';
 import DownloadModal from './components/DownloadModal';
+import StatsDashboard from './components/StatsDashboard';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -23,12 +24,12 @@ const App: React.FC = () => {
   const [isEligibilityOpen, setIsEligibilityOpen] = useState<boolean>(false);
   const [isARCOpen, setIsARCOpen] = useState<boolean>(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState<boolean>(false);
+  const [isStatsOpen, setIsStatsOpen] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   // Initialize Theme
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    // Default to Light Mode: Only enable dark if explicitly saved as 'dark'
     if (savedTheme === 'dark') {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -94,7 +95,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     loadDonors();
-    // eslint-disable-next-line react-hooks/exhaustivedeps
   }, []);
 
   const normalizeText = (str: string): string => {
@@ -117,32 +117,23 @@ const App: React.FC = () => {
     setHasSearched(true);
 
     const rawSearchTerm = searchTerm.trim();
-    // Normalize numerals (٠-٩ -> 0-9) and lowercase
     const normalizedTerm = normalizeNumerals(rawSearchTerm).toLowerCase();
-    // Extract digits for phone matching (ignores spaces like "06 60")
     const searchDigits = normalizedTerm.replace(/[^0-9]/g, '');
 
     const result = allDonors.filter(donor => {
-      // 1. Name Match (Normalize numerals in name just in case)
       const donorName = normalizeNumerals(donor.fullName).toLowerCase();
       const nameMatch = normalizedTerm ? donorName.includes(normalizedTerm) : true;
       
-      // 2. Phone Match
-      // Normalize numerals in donor phone and strip non-digits for comparison
       const donorPhone = normalizeNumerals(donor.phone);
       const donorPhoneDigits = donorPhone.replace(/[^0-9]/g, '');
       
       let phoneMatch = true;
       if (normalizedTerm) {
         if (searchDigits.length > 0) {
-           // If search term has digits, check against pure digits of phone
            phoneMatch = donorPhoneDigits.includes(searchDigits);
         } else {
-           // If no digits, unlikely to be a phone search, but check raw
            phoneMatch = false;
         }
-        
-        // Fallback: check if the normalized term exists in the phone string (e.g. if user searches partial text in phone field)
         if (!phoneMatch) {
             phoneMatch = donorPhone.toLowerCase().includes(normalizedTerm);
         }
@@ -188,11 +179,12 @@ const App: React.FC = () => {
         onOpenEligibility={() => setIsEligibilityOpen(true)}
         onOpenARC={() => setIsARCOpen(true)}
         onOpenDownload={() => setIsDownloadOpen(true)}
+        onOpenStats={() => setIsStatsOpen(true)}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
       />
 
-      {/* New Hero Action Section */}
+      {/* Hero Action Section */}
       <section className="relative z-10 w-full bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 border-b border-red-100 dark:border-red-900/30 py-6 shadow-sm transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-6xl flex justify-center">
             <a
@@ -257,6 +249,13 @@ const App: React.FC = () => {
         isOpen={isDownloadOpen}
         onClose={() => setIsDownloadOpen(false)}
         language={language}
+      />
+
+      <StatsDashboard
+        isOpen={isStatsOpen}
+        onClose={() => setIsStatsOpen(false)}
+        language={language}
+        donors={allDonors}
       />
     </div>
   );
