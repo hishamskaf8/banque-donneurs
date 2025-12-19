@@ -21,7 +21,7 @@ export const WILAYAS_MAP_FR_TO_AR: { [key: string]: string } = {
   "Sidi Bel Abbès": "سيدي بلعباس", "Annaba": "عنابة", "Guelma": "قالمة", "Constantine": "قسنطينة",
   "Médéa": "المدية", "Mostaganem": "مستغانم", "M'Sila": "المسيلة", "Mascara": "معسكر",
   "Ouargla": "ورقلة", "Oran": "وهران", "El Bayadh": "البيض", "Illizi": "إليزي",
-  "Bordj Bou Arreridj": "برج بوعريريج", "Boumerdès": "بومرداس", "El Tarf": "الطارف",
+  "Bordj Bou Arreridj": "برج بوعريريج", "Boumerدès": "بومرداس", "El Tarf": "الطارف",
   "Tindouf": "تندوف", "Tissemsilt": "تيسمسيلت", "El Oued": "الوادي", "Khenchela": "خنشلة",
   "Souk Ahras": "سوق أهراس", "Tipaza": "تيبازة", "Mila": "ميلة", "Aïn Defla": "عين الدفلى",
   "Naâma": "النعامة", "Aïn Témouchent": "عين تموشنت", "Ghardaïa": "غرداية", "Relizane": "غليزان"
@@ -30,6 +30,30 @@ export const WILAYAS_MAP_FR_TO_AR: { [key: string]: string } = {
 export const BLOOD_GROUPS = [
   "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-",
 ];
+
+export const COMPATIBILITY_RULES = {
+  // Donor -> Recipients
+  'O-': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
+  'O+': ['O+', 'A+', 'B+', 'AB+'],
+  'A-': ['A-', 'A+', 'AB-', 'AB+'],
+  'A+': ['A+', 'AB+'],
+  'B-': ['B-', 'B+', 'AB-', 'AB+'],
+  'B+': ['B+', 'AB+'],
+  'AB-': ['AB-', 'AB+'],
+  'AB+': ['AB+'],
+};
+
+export const RECIPIENT_RULES = {
+  // Recipient -> Donors
+  'O-': ['O-'],
+  'O+': ['O-', 'O+'],
+  'A-': ['O-', 'A-'],
+  'A+': ['O-', 'O+', 'A-', 'A+'],
+  'B-': ['O-', 'B-'],
+  'B+': ['O-', 'O+', 'B-', 'B+'],
+  'AB-': ['O-', 'A-', 'B-', 'AB-'],
+  'AB+': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
+};
 
 export const ABOUT_CONTENT = {
   fr: [
@@ -257,6 +281,17 @@ export const TRANSLATIONS = {
     arcAboutTitle: "لمحة عن الهلال الأحمر",
     downloadApp: "تحميل التطبيق",
     statsDashboard: "لوحة الإحصائيات",
+    compatibilityTitle: "توافق فصائل الدم",
+    compatibility: {
+      title: "إنفوجرافيك توافق الزمر",
+      donorMode: "من يمكنني التبرع له؟",
+      recipientMode: "من يمكنني الاستلام منه؟",
+      instruction: "اختر فصيلتك لاكتشاف التوافق",
+      givingTo: "يمكنك التبرع لـ:",
+      receivingFrom: "يمكنك الاستلام من:",
+      universalDonor: "متبرع عالمي",
+      universalRecipient: "مستقبل عالمي",
+    },
     stats: {
       title: "إحصائيات بنك المتبرعين",
       totalDonors: "إجمالي المتبرعين",
@@ -317,6 +352,17 @@ export const TRANSLATIONS = {
     arcAboutTitle: "Aperçu du Croissant-Rouge",
     downloadApp: "Télécharger l'application",
     statsDashboard: "Tableau de bord",
+    compatibilityTitle: "Compatibilité sanguine",
+    compatibility: {
+      title: "Infographie de compatibilité",
+      donorMode: "À qui puis-je donner ?",
+      recipientMode: "De qui puis-je recevoir ?",
+      instruction: "Sélectionnez votre groupe pour découvrir",
+      givingTo: "Vous pouvez donner à :",
+      receivingFrom: "Vous pouvez recevoir de :",
+      universalDonor: "Donneur Universel",
+      universalRecipient: "Receveur Universel",
+    },
     stats: {
       title: "Statistiques de la banque",
       totalDonors: "Total des donneurs",

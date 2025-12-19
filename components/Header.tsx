@@ -11,11 +11,12 @@ interface HeaderProps {
   onOpenARC: () => void;
   onOpenDownload: () => void;
   onOpenStats: () => void;
+  onOpenCompatibility: () => void;
   isDarkMode: boolean;
   toggleTheme: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, onOpenDownload, onOpenStats, isDarkMode, toggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onOpenEligibility, onOpenARC, onOpenDownload, onOpenStats, onOpenCompatibility, isDarkMode, toggleTheme }) => {
   const t = TRANSLATIONS[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -153,10 +154,25 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, onOpenAbout, onO
 
                 <button
                   onClick={() => {
-                    onOpenStats();
+                    onOpenCompatibility();
                     setIsMenuOpen(false);
                   }}
                   className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700 md:border-t-0"
+                >
+                  <div className="p-1.5 bg-red-100 dark:bg-red-900/30 rounded text-[#D61F1F] dark:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 21.5c-4.97 0-9-4.03-9-9 0-4.97 9-13 9-13s9 8.03 9 13c0 4.97-4.03 9-9 9z" />
+                    </svg>
+                  </div>
+                  {t.compatibilityTitle}
+                </button>
+
+                <button
+                  onClick={() => {
+                    onOpenStats();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-start px-5 py-4 text-sm font-bold text-[#0F172A] dark:text-slate-100 hover:bg-red-50 dark:hover:bg-slate-700 hover:text-[#D61F1F] dark:hover:text-red-400 transition-colors flex items-center gap-3"
                 >
                   <div className="p-1.5 bg-red-100 dark:bg-red-900/30 rounded text-[#D61F1F] dark:text-red-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">

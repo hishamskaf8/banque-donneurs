@@ -12,6 +12,7 @@ import EligibilityModal from './components/EligibilityModal';
 import ARCModal from './components/ARCModal';
 import DownloadModal from './components/DownloadModal';
 import StatsDashboard from './components/StatsDashboard';
+import CompatibilityModal from './components/CompatibilityModal';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('ar');
@@ -25,6 +26,7 @@ const App: React.FC = () => {
   const [isARCOpen, setIsARCOpen] = useState<boolean>(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState<boolean>(false);
   const [isStatsOpen, setIsStatsOpen] = useState<boolean>(false);
+  const [isCompatibilityOpen, setIsCompatibilityOpen] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   // Initialize Theme
@@ -180,6 +182,7 @@ const App: React.FC = () => {
         onOpenARC={() => setIsARCOpen(true)}
         onOpenDownload={() => setIsDownloadOpen(true)}
         onOpenStats={() => setIsStatsOpen(true)}
+        onOpenCompatibility={() => setIsCompatibilityOpen(true)}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
       />
@@ -256,6 +259,12 @@ const App: React.FC = () => {
         onClose={() => setIsStatsOpen(false)}
         language={language}
         donors={allDonors}
+      />
+
+      <CompatibilityModal
+        isOpen={isCompatibilityOpen}
+        onClose={() => setIsCompatibilityOpen(false)}
+        language={language}
       />
     </div>
   );
