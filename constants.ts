@@ -7,7 +7,7 @@ export const WILAYAS_FR = [
   "Blida", "Bouira", "Tamanrasset", "Tébessa", "Tlemcen", "Tiaret", "Tizi Ouzou", "Alger",
   "Djelfa", "Jijel", "Sétif", "Saïda", "Skikda", "Sidi Bel Abbès", "Annaba", "Guelma",
   "Constantine", "Médéa", "Mostaganem", "M'Sila", "Mascara", "Ouargla", "Oran", "El Bayadh",
-  "Illizi", "Bordj Bou Arreridj", "Boumerdès", "El Tarf", "Tindouf", "Tissemsilt", "El Oued",
+  "Illizi", "Bordj Bou Arreridj", "Boumerدès", "El Tarf", "Tindouf", "Tissemsilt", "El Oued",
   "Khenchela", "Souk Ahras", "Tipaza", "Mila", "Aïn Defla", "Naâma", "Aïn Témouchent",
   "Ghardaïa", "Relizane"
 ];
@@ -16,7 +16,7 @@ export const WILAYAS_MAP_FR_TO_AR: { [key: string]: string } = {
   "Adrar": "أدرار", "Chlef": "الشلف", "Laghouat": "الأغواط", "Oum El Bouaghi": "أم البواقي",
   "Batna": "باتنة", "Béjaïa": "بجاية", "Biskra": "بسكرة", "Béchar": "بشار", "Blida": "البليدة",
   "Bouira": "البويرة", "Tamanrasset": "تمنراست", "Tébessa": "تبسة", "Tlemcen": "تلمسان",
-  "Tiaret": "تيارت", "Tizi Ouzou": "تيزي وزو", "Alger": "الجزائر", "Djelfa": "الجزلفة",
+  "Tiaret": "تيارت", "Tizi Oوزو": "تيزي وزو", "Alger": "الجزائر", "Djelfa": "الجلفة",
   "Jijel": "جيجل", "Sétif": "سطيف", "Saïda": "سعيدة", "Skikda": "سكيكدة",
   "Sidi Bel Abbès": "سيدي بلعباس", "Annaba": "عنابة", "Guelma": "قالمة", "Constantine": "قسنطينة",
   "Médéa": "المدية", "Mostaganem": "مستغانم", "M'Sila": "المسيلة", "Mascara": "معسكر",
@@ -58,11 +58,11 @@ export const ABOUT_CONTENT = {
   ar: [
     {
       title: "مهمتنا",
-      content: "تهدف منصة 'قطرات أمل' إلى رقمنة وتسهيل عملية البحث عن المتبرعين بالدم في ولاية سيدي بلعباس، مما يساهم في إنقاذ الأرواح في الحالات الحرجة."
+      content: "تهدف منصة **Don de Sang CRA** إلى رقمنة وتسهيل عملية البحث عن المتبرعين بالدم في ولاية سيدي بلعباس، مما يساهم في إنقاذ الأرواح في الحالات الحرجة."
     },
     {
       title: "المطورون",
-      content: "تم تطوير هذا العمل كبادرة تطوعية تقنية بالتنسيق مع الهلال الأحمر الجزائري - لجنة سيدي بلعباس."
+      content: "تم تطوير هذا الموقع والتطبيق وكافة ارتباطاتهما الخارجية والداخلية كبادرة تقنية من قبل:\n\n• **الدكتور سكاف هشام**\n• **الدكتور طوفان محمد**\n• **الدكتورة إيمان أحمد عمر**\n\nبالتنسيق مع الهلال الأحمر الجزائري - اللجنة الولائية لولاية سيدي بلعباس."
     },
     {
       title: "المميزات",
@@ -81,11 +81,11 @@ export const ABOUT_CONTENT = {
   fr: [
     {
       title: "Notre Mission",
-      content: "La plateforme 'Gouttes d'Espoir' vise à faciliter la recherche de donneurs de sang dans la wilaya de Sidi Bel Abbès."
+      content: "La plateforme **Don de Sang CRA** vise à faciliter la recherche de donneurs de sang dans la wilaya de Sidi Bel Abbès."
     },
     {
       title: "Développeurs",
-      content: "Ce projet est une initiative bénévole en coordination avec le Croissant-Rouge Algérien - Sidi Bel Abbès."
+      content: "Ce site web, l'application et toutes leurs liaisons ont été développés comme une initiative technologique par :\n\n• **Dr. SKAF Hisham**\n• **Dr. TOUFAN Mohammad**\n• **Dr. Imene AHMED OMAR**\n\nen coordination avec le Croissant-Rouge Algérien - Comité Wilaya de Sidi Bel Abbès."
     },
     {
       title: "Caractéristiques",
@@ -172,14 +172,16 @@ export const ARC_CONTENT = {
 // Content for Download Modal
 export const DOWNLOAD_CONTENT = {
   ar: {
-    title: "تطبيق قطرات أمل",
+    title: "تطبيق Don de Sang CRA",
     description: "حمل تطبيقنا للوصول السريع إلى قاعدة بيانات المتبرعين في أي وقت.",
+    vpnNote: "ملاحظة: في حال مواجهة أية مشكلات في الوصول لواجهة تحميل التطبيق، يرجى استخدام VPN مناسب لضمان الوصول.",
     url: "#",
     buttonText: "تحميل التطبيق (APK)"
   },
   fr: {
-    title: "App Gouttes d'Espoir",
+    title: "App Don de Sang CRA",
     description: "Téléchargez notre application pour un accès rapide aux donneurs à tout moment.",
+    vpnNote: "Note : En cas de problèmes d'accès à l'interface de téléchargement, veuillez utiliser un VPN approprié.",
     url: "#",
     buttonText: "Télécharger (APK)"
   }
@@ -227,7 +229,7 @@ export const TRANSLATIONS = {
     whatsappContact: "تواصل معنا",
     supportContact: "تواصل مع الدعم",
     ourLocation: "موقعنا على الخريطة",
-    pageTitle: "قطرات أمل - بنك المتبرعين بالدم",
+    pageTitle: "Don de Sang CRA - بنك المتبرعين بالدم",
     metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس.",
     callAction: "اتصل بالمتبرع",
     aboutApp: "حول هذا الموقع",
@@ -299,7 +301,7 @@ export const TRANSLATIONS = {
     whatsappContact: "Contactez-nous",
     supportContact: "Support",
     ourLocation: "Localisation",
-    pageTitle: "Gouttes d’Espoir - Banque des donneurs",
+    pageTitle: "Don de Sang CRA - Banque des donneurs",
     metaDescription: "Site du Croissant-Rouge Algérien – Sidi Bel Abbès.",
     callAction: "Appeler",
     aboutApp: "À propos",

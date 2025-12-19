@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import type { Language } from '../types';
 import { TRANSLATIONS, DOWNLOAD_CONTENT } from '../constants';
@@ -67,9 +66,21 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, language
             <h2 className="text-2xl font-bold text-[#0F172A] dark:text-white mb-4 leading-tight">
                 {content.title}
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base font-medium leading-relaxed mb-8 whitespace-pre-line">
+            <p className="text-slate-600 dark:text-slate-300 text-base font-medium leading-relaxed mb-6 whitespace-pre-line">
                 {content.description}
             </p>
+
+            {/* VPN Note Section */}
+            {content.vpnNote && (
+                <div className="mb-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl flex items-start gap-3 text-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-xs font-bold text-amber-800 dark:text-amber-200 leading-normal">
+                        {content.vpnNote}
+                    </p>
+                </div>
+            )}
 
             <a
                 href={content.url}

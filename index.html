@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gouttes d’Espoir — Banque des donneurs</title>
+    <title>Don de Sang CRA — Banque des donneurs</title>
     <meta name="description" content="A professional, modern, and fully responsive website for the Algerian Red Crescent – Wilaya of Sidi Bel Abbès." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gouttes d’Espoir — Banque des donneurs" />
+    <meta property="og:title" content="Don de Sang CRA — Banque des donneurs" />
     <meta property="og:description" content="Sauvez des vies à Sidi Bel Abbès." />
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary" />
-    <meta property="twitter:title" content="Gouttes d’Espoir — Banque des donneurs" />
+    <meta property="twitter:title" content="Don de Sang CRA — Banque des donneurs" />
     <meta property="twitter:description" content="Sauvez des vies à Sidi Bel Abbès." />
     <meta property="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a9/Algerian_Red_Crescent_logo.svg" />
     
@@ -25,6 +26,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -158,6 +163,11 @@
       }
       .animate-pulse-ring {
         animation: pulse-ring 2s infinite;
+      }
+
+      /* Hide during PDF generation if needed */
+      .pdf-hidden {
+          display: none !important;
       }
     </style>
   <script type="importmap">
