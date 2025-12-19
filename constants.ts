@@ -16,12 +16,12 @@ export const WILAYAS_MAP_FR_TO_AR: { [key: string]: string } = {
   "Adrar": "أدرار", "Chlef": "الشلف", "Laghouat": "الأغواط", "Oum El Bouaghi": "أم البواقي",
   "Batna": "باتنة", "Béjaïa": "بجاية", "Biskra": "بسكرة", "Béchar": "بشار", "Blida": "البليدة",
   "Bouira": "البويرة", "Tamanrasset": "تمنراست", "Tébessa": "تبسة", "Tlemcen": "تلمسان",
-  "Tiaret": "تيارت", "Tizi Ouzou": "تيزي وزو", "Alger": "الجزائر", "Djelfa": "الجلفة",
+  "Tiaret": "تيارت", "Tizi Ouzou": "تيزي وزو", "Alger": "الجزائر", "Djelfa": "الجزلفة",
   "Jijel": "جيجل", "Sétif": "سطيف", "Saïda": "سعيدة", "Skikda": "سكيكدة",
   "Sidi Bel Abbès": "سيدي بلعباس", "Annaba": "عنابة", "Guelma": "قالمة", "Constantine": "قسنطينة",
   "Médéa": "المدية", "Mostaganem": "مستغانم", "M'Sila": "المسيلة", "Mascara": "معسكر",
   "Ouargla": "ورقلة", "Oran": "وهران", "El Bayadh": "البيض", "Illizi": "إليزي",
-  "Bordj Bou Arreridj": "برج بوعريريج", "Boumerدès": "بومرداس", "El Tarf": "الطارف",
+  "Bordj Bou Arreridj": "برج بوعريريج", "Boumerdès": "بومرداس", "El Tarf": "الطارف",
   "Tindouf": "تندوف", "Tissemsilt": "تيسمسيلت", "El Oued": "الوادي", "Khenchela": "خنشلة",
   "Souk Ahras": "سوق أهراس", "Tipaza": "تيبازة", "Mila": "ميلة", "Aïn Defla": "عين الدفلى",
   "Naâma": "النعامة", "Aïn Témouchent": "عين تموشنت", "Ghardaïa": "غرداية", "Relizane": "غليزان"
@@ -32,7 +32,6 @@ export const BLOOD_GROUPS = [
 ];
 
 export const COMPATIBILITY_RULES = {
-  // Donor -> Recipients
   'O-': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
   'O+': ['O+', 'A+', 'B+', 'AB+'],
   'A-': ['A-', 'A+', 'AB-', 'AB+'],
@@ -44,7 +43,6 @@ export const COMPATIBILITY_RULES = {
 };
 
 export const RECIPIENT_RULES = {
-  // Recipient -> Donors
   'O-': ['O-'],
   'O+': ['O-', 'O+'],
   'A-': ['O-', 'A-'],
@@ -55,179 +53,135 @@ export const RECIPIENT_RULES = {
   'AB+': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
 };
 
+// Content for About Modal
 export const ABOUT_CONTENT = {
-  fr: [
-    {
-      title: "Objectif & Mission",
-      content: "Cette application a été conçue pour faciliter le don de sang à Sidi Bel Abbès, Algérie, en connectant les donneurs locaux aux personnes dans le besoin. Développée en partenariat avec le Croissant-Rouge Algérien – Comité de Sidi Bel Abbès, elle vise à sauver des vies en simplifiant le processus de don et la disponibilité du sang au sein de la communauté locale."
-    },
-    {
-      title: "Développement de l’application",
-      content: "Cette application, ainsi que tous ses modules originaux et annexes, a été entièrement développée par <span class=\"font-black text-lg mx-1\">Skaf Hisham</span>, <span class=\"font-black text-lg mx-1\">TOUFAN Mohammed</span> et <span class=\"font-black text-lg mx-1\">Imene AHMED OMAR</span> pour le compte du Croissant-Rouge Algérien – Comité de la Wilaya de Sidi Bel Abbès, afin de garantir une qualité optimale et une parfaite adaptation aux besoins de la communauté locale."
-    },
-    {
-      title: "Principales fonctionnalités",
-      list: [
-        "Inscription des donneurs : Une inscription simple et sécurisée pour les habitants de Sidi Bel Abbès souhaitant donner leur sang, avec gestion du profil personnel.",
-        "Recherche locale de sang : Les bénéficiaires ou le personnel médical peuvent rechercher des donneurs par groupe sanguin et quartier pour une assistance rapide et efficace.",
-        "Historique des dons : Suivi des dons précédents et réception de notifications sur les prochaines campagnes de don à Sidi Bel Abbès.",
-        "Sécurité & confidentialité : Toutes les données personnelles sont stockées de manière sécurisée selon les normes les plus strictes de protection des informations.",
-        "Notifications & alertes : Alertes en temps réel pour les besoins urgents en sang et les campagnes de don programmées dans la ville.",
-        "Ressources éducatives : Informations sur les procédures de don, ses bienfaits et les critères d’éligibilité, adaptées à la communauté locale."
-      ]
-    },
-    {
-      title: "Conditions & Confidentialité",
-      list: [
-        "Les utilisateurs doivent fournir des informations personnelles et médicales exactes pour assurer une gestion sûre et efficace des dons.",
-        "L’application est destinée uniquement à des dons de sang volontaires et non commerciaux à Sidi Bel Abbès.",
-        "Les données personnelles collectées via l’application sont utilisées exclusivement pour la coordination des dons et ne seront pas partagées avec des tiers sans consentement.",
-        "En utilisant l’application, les utilisateurs s’engagent à respecter les directives locales relatives à l’éligibilité au don.",
-        "Les utilisateurs peuvent demander la suppression de leurs données personnelles à tout moment en contactant le support."
-      ]
-    },
-    {
-      title: "Pourquoi choisir Done de Sang CRA – Sidi Bel Abbès",
-      list: [
-        "Soutient la mission humanitaire du Croissant-Rouge Algérien au niveau local.",
-        "Assure des temps de réponse rapides en cas d’urgence dans la ville.",
-        "Favorise une communauté de donneurs réguliers, renforçant la santé publique locale.",
-        "Conçu pour être simple, fiable et accessible."
-      ]
-    },
-    {
-      title: "Participez et sauvez des vies",
-      content: "En utilisant cette application, vous contribuez à sauver des vies à Sidi Bel Abbès, à sensibiliser sur l’importance du don de sang et à construire une communauté plus forte et en meilleure santé. Chaque don compte."
-    },
-    {
-      title: "Support & Contact",
-      content: "Pour toute assistance ou question, veuillez contacter l’équipe locale via l’application ou directement le Croissant-Rouge Algérien – Comité de Sidi Bel Abbès."
-    }
-  ],
   ar: [
     {
-      title: "الغرض والمهمة",
-      content: "تم تصميم هذا التطبيق لتسهيل عملية التبرع بالدم في سيدي بلعباس، الجزائر، من خلال ربط المتبرعين المحليين بالمحتاجين. بالتعاون مع الهلال الأحمر الجزائري – لجنة سيدي بلعباس، يهدف التطبيق إلى إنقاذ الأرواح من خلال تسهيل عملية التبرع وتوفير الدم داخل المجتمع المحلي."
+      title: "مهمتنا",
+      content: "تهدف منصة 'قطرات أمل' إلى رقمنة وتسهيل عملية البحث عن المتبرعين بالدم في ولاية سيدي بلعباس، مما يساهم في إنقاذ الأرواح في الحالات الحرجة."
     },
     {
-      title: "تطوير التطبيق",
-      content: "هذا التطبيق وكل ملحقاته الأصلية والفرعية تم تطويرها بالكامل من قبل <span class=\"font-black text-lg mx-1\">سكاف هشام</span> و <span class=\"font-black text-lg mx-1\">طوفان محمد</span> و <span class=\"font-black text-lg mx-1\">إيمان أحمد عمر</span> لصالح الهلال الأحمر الجزائري – لجنة ولاية سيدي بلعباس، لضمان جودة عالية وملاءمة كاملة لاحتياجات المجتمع المحلي."
+      title: "المطورون",
+      content: "تم تطوير هذا العمل كبادرة تطوعية تقنية بالتنسيق مع الهلال الأحمر الجزائري - لجنة سيدي بلعباس."
     },
     {
-      title: "أهم الميزات",
+      title: "المميزات",
       list: [
-        "تسجيل المتبرعين: تسجيل سهل وآمن للأشخاص في سيدي بلعباس الراغبين بالتبرع، مع إمكانية إدارة الملف الشخصي.",
-        "البحث المحلي عن الدم: يمكن للمحتاجين أو الطاقم الطبي البحث عن المتبرعين حسب فصيلة الدم والمنطقة لضمان استجابة سريعة وفعالة.",
-        "سجل التبرعات: متابعة التبرعات السابقة واستلام إشعارات حول حملات التبرع القادمة في سيدي بلعباس.",
-        "السلامة والخصوصية: يتم تخزين جميع البيانات الشخصية بشكل آمن وفق أعلى معايير حماية المعلومات.",
-        "الإشعارات والتنبيهات: تنبيهات فورية لحالات الطوارئ وحملات التبرع المجدولة في المدينة.",
-        "الموارد التثقيفية: معلومات حول إجراءات التبرع وفوائده ومتطلبات الأهلية، مخصصة للمجتمع المحلي."
+        "قاعدة بيانات متجددة للمتبرعين المتطوعين.",
+        "نظام ذكي للتحقق من أهلية التبرع (قاعدة الـ 4 أشهر).",
+        "واجهة مستخدم تدعم الوضع الليلي واللغتين العربية والفرنسية.",
+        "سهولة التواصل المباشر مع المتبرع."
       ]
     },
     {
-      title: "الشروط والخصوصية",
+      title: "الخصوصية",
+      content: "بيانات المتبرعين محمية وتستخدم حصراً لغرض التبرع بالدم. نحث المستخدمين على احترام الخصوصية."
+    }
+  ],
+  fr: [
+    {
+      title: "Notre Mission",
+      content: "La plateforme 'Gouttes d'Espoir' vise à faciliter la recherche de donneurs de sang dans la wilaya de Sidi Bel Abbès."
+    },
+    {
+      title: "Développeurs",
+      content: "Ce projet est une initiative bénévole en coordination avec le Croissant-Rouge Algérien - Sidi Bel Abbès."
+    },
+    {
+      title: "Caractéristiques",
       list: [
-        "يجب على المستخدمين تقديم معلومات شخصية وطبية دقيقة لضمان سلامة إدارة التبرع.",
-        "التطبيق مخصص لأغراض التبرع الطوعي وغير التجاري داخل سيدي بلعباس فقط.",
-        "تُستخدم البيانات الشخصية التي يتم جمعها عبر التطبيق حصريًا لتنسيق التبرع بالدم ولن تُشارك مع أي طرف ثالث بدون موافقة المستخدم.",
-        "باستخدام التطبيق، يوافق المستخدمون على الالتزام بإرشادات ومتطلبات التبرع المحلية.",
-        "يمكن للمستخدمين طلب حذف بياناتهم الشخصية في أي وقت عن طريق التواصل مع الدعم."
+        "Base de données dynamique des donneurs bénévoles.",
+        "Vérification d'éligibilité (règle des 4 mois).",
+        "Interface bilingue avec mode sombre.",
+        "Contact direct facilité avec les donneurs."
       ]
     },
     {
-      title: "لماذا تختار تطبيق تبرع بالدم CRA – سيدي بلعباس؟",
-      list: [
-        "يدعم المهمة الإنسانية للهلال الأحمر الجزائري على المستوى المحلي.",
-        "يضمن استجابة سريعة لحالات الطوارئ في المدينة.",
-        "يشجع على بناء مجتمع من المتبرعين المنتظمين، مما يعزز الصحة العامة المحلية.",
-        "مصمم ليكون بسيطًا وموثوقًا وسهل الوصول إليه."
-      ]
-    },
-    {
-      title: "شارك وانقذ حياة",
-      content: "باستخدامك لهذا التطبيق، تساهم في إنقاذ الأرواح في سيدي بلعباس، وزيادة الوعي بأهمية التبرع بالدم، وبناء مجتمع أقوى وأكثر صحة. كل تبرع مهم."
-    },
-    {
-      title: "الدعم والتواصل",
-      content: "للحصول على المساعدة أو الاستفسار، يرجى التواصل مع فريق الدعم المحلي عبر التطبيق أو الاتصال مباشرة بـ الهلال الأحمر الجزائري – لجنة سيدي بلعباس."
+      title: "Confidentialité",
+      content: "Les données des donneurs sont protégées et réservées exclusivement au don de sang."
     }
   ]
 };
 
+// Content for Eligibility Modal
 export const ELIGIBILITY_CONTENT = {
-  fr: [
-    {
-      content: "Le donneur doit être en bonne santé, sans fièvre, maladies infectieuses ou conditions médicales graves."
-    },
-    {
-      list: [
-        "Âge autorisé pour le don : entre 18 et 65 ans.",
-        "Le poids du donneur doit être au moins de 50 kg.",
-        "Le taux d’hémoglobine doit être suffisant selon le contrôle médical.",
-        "La tension artérielle, le pouls et la température corporelle doivent être dans les limites normales.",
-        "Les personnes présentant des maladies infectieuses, ayant reçu une transfusion récemment ou non éligibles selon les examens médicaux ne peuvent pas donner.",
-        "Le don doit être volontaire et gratuit, conformément à la législation nationale algérienne — la vente ou l’achat de sang est interdit.",
-        "Une évaluation médicale supplémentaire peut être demandée dans certains cas particuliers (certains médicaments, voyage dans des zones épidémiques, ou interventions récentes telles que tatouages ou piercings)."
-      ]
-    },
-    {
-      title: "Sources médicales",
-      list: [
-        "Organisation mondiale de la Santé – OMS (who.int)",
-        "PubMed – NCBI (ncbi.nlm.nih.gov)"
-      ]
-    }
-  ],
   ar: [
     {
-      content: "يجب أن يكون المتبرع بصحة جيدة، خالٍ من الحمى أو الأمراض المعدية أو الحالات الصحية الخطيرة."
+      title: "الحالة الصحية العامة",
+      content: "يجب أن يكون المتبرع في حالة صحية جيدة، وألا يعاني من أمراض مزمنة أو معدية قد تنتقل عبر الدم."
     },
     {
+      title: "المعايير الأساسية",
       list: [
-        "العمر المسموح به للتبرع: بين 18 و 65 سنة.",
-        "يجب أن يكون وزن المتبرع 50 كغ أو أكثر.",
-        "مستوى الهيموغلوبين (خضاب الدم) يجب أن يكون كافياً حسب الفحص الطبي.",
-        "ضغط الدم، نبض القلب، ودرجة حرارة الجسم يجب أن تكون ضمن المعدلات الطبيعية.",
-        "لا يُسمح بالتبرع للأشخاص المصابين بأمراض معدية، أو ممن تلقوا نقل دم مؤخراً، أو غير المؤهلين وفق الفحوصات الطبية.",
-        "التبرع يكون طوعياً ومجانياً، وفق القوانين الوطنية الجزائرية — يمنع بيع أو شراء الدم.",
-        "يمكن طلب تقييم طبي إضافي في بعض الحالات الخاصة (مثل بعض الأدوية، السفر لمناطق وبائية، أو إجراءات حديثة كالتاتو أو الوشم)."
+        "العمر: يجب أن يتراوح عمر المتبرع بين 18 و 65 عاماً.",
+        "الوزن: يجب أن لا يقل وزن المتبرع عن 50 كغ.",
+        "الفترة الزمنية: يجب انقضاء 4 أشهر على الأقل بين كل تبرع وآخر.",
+        "ضغط الدم: يجب أن يكون ضمن الحدود الطبيعية."
       ]
     },
     {
-      title: "المصادر الطبية",
+      title: "المصادر",
+      content: "تعتمد هذه المعايير على توصيات المنظمة العالمية للصحة وبروتوكولات وزارة الصحة الجزائرية."
+    }
+  ],
+  fr: [
+    {
+      title: "Santé Générale",
+      content: "Le donneur doit être en bonne santé et ne doit pas souffrir de maladies transmissibles par le sang."
+    },
+    {
+      title: "Critères de base",
       list: [
-        "منظمة الصحة العالمية – WHO (who.int)",
-        "قاعدة بيانات PubMed – NCBI (ncbi.nlm.nih.gov)"
+        "Âge : Entre 18 et 65 ans.",
+        "Poids : Au moins 50 kg.",
+        "Intervalle : Minimum de 4 mois entre deux dons.",
+        "Tension : Doit être dans les normes."
       ]
+    },
+    {
+      title: "Sources",
+      content: "Ces critères sont basés sur les recommandations de l'OMS et du Ministère de la Santé Algérien."
     }
   ]
 };
 
+// Content for ARC Modal
 export const ARC_CONTENT = {
-  fr: [
-    {
-      content: "Le Croissant-Rouge Algérien est une organisation humanitaire nationale fondée en 1956, opérant selon les principes du Mouvement international de la Croix-Rouge et du Croissant-Rouge. Sa mission consiste à apporter une aide aux personnes vulnérables sans discrimination, à renforcer la solidarité, à intervenir lors des urgences et des catastrophes, ainsi qu’à soutenir la santé publique. L’organisation s’appuie sur un vaste réseau de bénévoles présents dans toutes les wilayas du pays, faisant d’elle un acteur essentiel de l’action humanitaire en Algérie."
-    }
-  ],
   ar: [
     {
-      content: "الهلال الأحمر الجزائري جمعية إنسانية وطنية تأسست عام 1956، وتعتمد على مبادئ الحركة الدولية للصليب الأحمر والهلال الأحمر. يعمل بهدف تقديم المساعدة للمحتاجين دون تمييز، وتعزيز التضامن، والاستجابة للطوارئ والكوارث، إضافة إلى دعم الصحة العمومية والتكفل بالفئات الهشة. يعتمد في نشاطاته على شبكة واسعة من المتطوعين عبر جميع ولايات الجزائر، ويُعد قوة أساسية في العمل الإغاثي والإنساني داخل البلاد."
+      title: "لمحة تاريخية",
+      content: "تأسس الهلال الأحمر الجزائري في 11 ديسمبر 1956، وهو منظمة إنسانية تطوعية مستقلة تعمل كجهاز مساعد للسلطات العمومية."
+    },
+    {
+      title: "مبادئنا الأساسية",
+      content: "الإنسانية، عدم التحيز، الحياد، الاستقلال، التطوع، الوحدة، والعالمية."
+    }
+  ],
+  fr: [
+    {
+      title: "Historique",
+      content: "Fondé en 1956, le Croissant-Rouge Algérien est une organisation humanitaire bénévole indépendante."
+    },
+    {
+      title: "Principes",
+      content: "Humanité, Impartialité, Neutralité, Indépendance, Volontariat, Unité et Universalité."
     }
   ]
 };
 
+// Content for Download Modal
 export const DOWNLOAD_CONTENT = {
-  fr: {
-    title: "Télécharger l'application mobile",
-    description: "Profitez d'une expérience plus fluide, stable et restez connecté en permanence. Téléchargez notre application officielle pour accéder rapidement aux services de don.\n\nNote : Si vous rencontrez des difficultés pour accéder à la page de téléchargement, essayez d'utiliser un VPN approprié.",
-    buttonText: "Télécharger maintenant",
-    url: "https://apkpure.com/p/com.cra.dondesang"
-  },
   ar: {
-    title: "تحميل التطبيق الرسمي",
-    description: "للحصول على تجربة مستخدم أفضل وأكثر استقراراً، يمكنكم تحميل التطبيق الرسمي الخاص بنا. يتيح التطبيق وصولاً سريعاً للخدمات.\n\nملاحظة: عند مواجهة أية مشكلات في الوصول لصفحة التحميل جرب استخدام VPN مناسب.",
-    buttonText: "حمل التطبيق الآن",
-    url: "https://apkpure.com/p/com.cra.dondesang"
+    title: "تطبيق قطرات أمل",
+    description: "حمل تطبيقنا للوصول السريع إلى قاعدة بيانات المتبرعين في أي وقت.",
+    url: "#",
+    buttonText: "تحميل التطبيق (APK)"
+  },
+  fr: {
+    title: "App Gouttes d'Espoir",
+    description: "Téléchargez notre application pour un accès rapide aux donneurs à tout moment.",
+    url: "#",
+    buttonText: "Télécharger (APK)"
   }
 };
 
@@ -274,7 +228,7 @@ export const TRANSLATIONS = {
     supportContact: "تواصل مع الدعم",
     ourLocation: "موقعنا على الخريطة",
     pageTitle: "قطرات أمل - بنك المتبرعين بالدم",
-    metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس، يهدف إلى تسجيل متبرعين جدد بالدم والبحث عن متبرعين متوافقين بكفاءة.",
+    metaDescription: "موقع احترافي وحديث للهلال الأحمر الجزائري - اللجنة الولائية لسيدي بلعباس.",
     callAction: "اتصل بالمتبرع",
     aboutApp: "حول هذا الموقع",
     eligibilityTitle: "شروط أهلية التبرع بالدم",
@@ -283,14 +237,15 @@ export const TRANSLATIONS = {
     statsDashboard: "لوحة الإحصائيات",
     compatibilityTitle: "توافق فصائل الدم",
     compatibility: {
-      title: "إنفوجرافيك توافق الزمر",
-      donorMode: "من يمكنني التبرع له؟",
-      recipientMode: "من يمكنني الاستلام منه؟",
-      instruction: "اختر فصيلتك لاكتشاف التوافق",
-      givingTo: "يمكنك التبرع لـ:",
-      receivingFrom: "يمكنك الاستلام من:",
+      title: "توافق فصائل الدم",
+      donorMode: "يمكنك التبرع لـ",
+      recipientMode: "يمكنك الاستلام من",
+      instruction: "اختر فصيلة الدم لاستكشاف خريطة التوافق",
+      givingTo: "تعطي لـ:",
+      receivingFrom: "تأخذ من:",
       universalDonor: "متبرع عالمي",
       universalRecipient: "مستقبل عالمي",
+      back: "رجوع",
     },
     stats: {
       title: "إحصائيات بنك المتبرعين",
@@ -315,7 +270,7 @@ export const TRANSLATIONS = {
     allWilayas: "Toutes les wilayas",
     searchTerm: "Nom / Téléphone",
     searchPlaceholder: "Rechercher par nom ou téléphone...",
-    searchNote: "Note : Vous pouvez rechercher un donneur en remplissant un seul champ ou plusieurs, tels que : nom, numéro de téléphone, wilaya ou groupe sanguin. Il n’est pas nécessaire de tout remplir.",
+    searchNote: "Note : Vous pouvez rechercher un donneur en remplissant un seul champ ou plusieurs.",
     searchButton: "Rechercher",
     refreshButton: "Actualiser les données",
     totalDonors: "Total des donneurs",
@@ -329,49 +284,50 @@ export const TRANSLATIONS = {
       lastDonation: "Dernier don",
       notes: "Remarques",
       noResults: "Aucun résultat trouvé.",
-      noResultsHint: "Essayez de modifier vos critères de recherche ou d'actualiser les données.",
+      noResultsHint: "Essayez de modifier vos critères.",
       initialSearchMessage: "Recherchez votre besoin en sang",
       ineligible: "Non éligible",
-      ineligibleReason: "Il doit s'écouler au moins 4 mois depuis le dernier don.",
+      ineligibleReason: "Minimum 4 mois depuis le dernier don.",
       eligible: "Éligible au don",
     },
     footerContact: "Nous contacter",
-    footerRights: "Croissant-Rouge Algérien - Sidi Bel Abbès. Tous droits réservés 2025 ©",
-    fetchError: "Une erreur est survenue lors du chargement des données. Veuillez réessayer.",
+    footerRights: "Croissant-Rouge Algérien - Sidi Bel Abbès. 2025 ©",
+    fetchError: "Une erreur est survenue.",
     loading: "Chargement...",
     male: "Homme",
     female: "Femme",
     whatsappContact: "Contactez-nous",
-    supportContact: "Contacter le support",
-    ourLocation: "Notre localisation",
+    supportContact: "Support",
+    ourLocation: "Localisation",
     pageTitle: "Gouttes d’Espoir - Banque des donneurs",
-    metaDescription: "Un site web professionnel et moderne pour le Croissant-Rouge Algérien – Comité de Wilaya de Sidi Bel Abbès, visant à enregistrer de nouveaux donneurs de sang et à rechercher efficacement des donneurs compatibles.",
-    callAction: "Appeler le donneur",
-    aboutApp: "À propos de cette application",
-    eligibilityTitle: "Conditions d’éligibilité",
-    arcAboutTitle: "Aperçu du Croissant-Rouge",
-    downloadApp: "Télécharger l'application",
-    statsDashboard: "Tableau de bord",
+    metaDescription: "Site du Croissant-Rouge Algérien – Sidi Bel Abbès.",
+    callAction: "Appeler",
+    aboutApp: "À propos",
+    eligibilityTitle: "Éligibilité",
+    arcAboutTitle: "Aperçu ARC",
+    downloadApp: "Télécharger",
+    statsDashboard: "Stats",
     compatibilityTitle: "Compatibilité sanguine",
     compatibility: {
-      title: "Infographie de compatibilité",
-      donorMode: "À qui puis-je donner ?",
-      recipientMode: "De qui puis-je recevoir ?",
-      instruction: "Sélectionnez votre groupe pour découvrir",
-      givingTo: "Vous pouvez donner à :",
-      receivingFrom: "Vous pouvez recevoir de :",
+      title: "Compatibilité sanguine",
+      donorMode: "Peut donner à",
+      recipientMode: "Peut recevoir de",
+      instruction: "Sélectionnez un groupe pour voir les compatibilités",
+      givingTo: "Donne à :",
+      receivingFrom: "Reçoit de :",
       universalDonor: "Donneur Universel",
       universalRecipient: "Receveur Universel",
+      back: "Retour",
     },
     stats: {
-      title: "Statistiques de la banque",
-      totalDonors: "Total des donneurs",
-      mostAvailable: "Groupe le plus fréquent",
-      distribution: "Distribution des groupes",
+      title: "Statistiques",
+      totalDonors: "Total",
+      mostAvailable: "Plus fréquent",
+      distribution: "Distribution",
       specialNote: "Note Spéciale",
-      oNegAdvice: "Donneurs O- : Votre sang est universel et vital en urgence. Votre contribution est une ressource inestimable pour notre communauté !",
-      successRate: "Taux de réponse",
-      donorActivity: "Activité des donneurs",
+      oNegAdvice: "Donneurs O- : Votre sang est universel et vital !",
+      successRate: "Taux",
+      donorActivity: "Activité",
     }
   }
 };
