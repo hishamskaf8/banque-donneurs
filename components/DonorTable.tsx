@@ -16,6 +16,12 @@ const WaitIcon: React.FC = () => (
   </svg>
 );
 
+const FrozenIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+);
+
 const SearchIcon: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -24,14 +30,11 @@ const SearchIcon: React.FC = () => (
 
 const BloodDropHero: React.FC = () => (
     <div className="relative mb-8 cursor-default flex justify-center">
-        {/* Main Icon - Creative Liquid Drop */}
         <div className="relative z-10 w-28 h-28 bg-[#D61F1F] rounded-full flex items-center justify-center shadow-xl border-4 border-white dark:border-slate-800">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 text-white" viewBox="0 0 24 24" fill="currentColor">
-                {/* Artistic Drop Shape */}
                 <path d="M12 21.5c-4.97 0-9-4.03-9-9 0-4.97 9-13 9-13s9 8.03 9 13c0 4.97-4.03 9-9 9z" />
             </svg>
         </div>
-        {/* Sharp Badge */}
         <div className="absolute top-0 -right-2 w-8 h-8 bg-[#0D9488] rounded-full border-4 border-white dark:border-slate-800 shadow-md"></div>
     </div>
 );
@@ -47,37 +50,30 @@ interface DonorTableProps {
 const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, isLoading, hasSearched }) => {
   const t = TRANSLATIONS[language];
 
-  // Helper function to check eligibility (4 months rule)
+  // دقة 4 أشهر بالتمام والكمال
   const isEligibleToDonate = (lastDonationStr: string): boolean => {
-    if (!lastDonationStr || lastDonationStr === '-') return true;
+    if (!lastDonationStr || lastDonationStr === '-' || lastDonationStr.trim() === '') return true;
 
-    // Try to parse different date formats
-    const parseDate = (str: string) => {
-        // Handle DD/MM/YYYY
-        const dmy = str.split('/');
-        if (dmy.length === 3) {
-            return new Date(parseInt(dmy[2]), parseInt(dmy[1]) - 1, parseInt(dmy[0]));
-        }
-        // Fallback for native Date parsing
-        return new Date(str);
-    };
+    const parts = lastDonationStr.split('/');
+    if (parts.length !== 3) return true;
 
-    const lastDate = parseDate(lastDonationStr);
-    if (isNaN(lastDate.getTime())) return true; // Default to eligible if date is malformed
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
+    const year = parseInt(parts[2], 10);
+
+    const lastDate = new Date(year, month, day);
+    if (isNaN(lastDate.getTime())) return true;
+
+    // إضافة 4 أشهر بالضبط
+    const eligibilityDate = new Date(lastDate);
+    eligibilityDate.setMonth(eligibilityDate.getMonth() + 4);
 
     const today = new Date();
-    
-    // Calculate difference in months
-    let months = (today.getFullYear() - lastDate.getFullYear()) * 12;
-    months -= lastDate.getMonth();
-    months += today.getMonth();
+    // تصفير الوقت للمقارنة بالتاريخ فقط
+    today.setHours(0, 0, 0, 0);
+    eligibilityDate.setHours(0, 0, 0, 0);
 
-    // Fine-tune if the day of month hasn't passed yet
-    if (today.getDate() < lastDate.getDate()) {
-        months--;
-    }
-
-    return months >= 4;
+    return today >= eligibilityDate;
   };
 
   const translateGender = (gender: string) => {
@@ -96,13 +92,10 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
     );
   }
 
-  // Initial State Design
   if (!hasSearched) {
     return (
       <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-white dark:bg-slate-800 rounded-xl shadow-lg border-2 border-slate-100 dark:border-slate-700 text-center min-h-[500px] transition-colors duration-300">
-        
         <BloodDropHero />
-        
         <div className="relative z-10 max-w-lg space-y-5">
             <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] dark:text-white tracking-tight leading-tight">
                 {t.table.initialSearchMessage}
@@ -130,7 +123,6 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
 
   return (
     <div className="space-y-6 animate-pop">
-      {/* Results Header */}
       <div className="flex justify-between items-center px-2">
         <h3 className="text-lg font-bold text-[#0F172A] dark:text-white flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-[#0D9488]"></span>
@@ -160,15 +152,15 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                 {donors.length > 0 ? donors.map((donor, index) => {
                   const eligible = isEligibleToDonate(donor.lastDonation);
                   return (
-                    <tr key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-all duration-200 group border-b border-slate-50 dark:border-slate-700 last:border-0 ${!eligible ? 'opacity-50 grayscale select-none' : ''}`}>
+                    <tr key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-all duration-200 group border-b border-slate-50 dark:border-slate-700 last:border-0 ${!eligible ? 'opacity-40 grayscale pointer-events-none bg-slate-50 dark:bg-slate-900/50' : ''}`}>
                         <td className="px-8 py-5 font-bold text-[#0F172A] dark:text-white text-base whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                                <div className={`w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[#0F172A] dark:text-white font-bold text-sm border-2 border-slate-200 dark:border-slate-600 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors ${!eligible ? 'bg-slate-200 dark:bg-slate-800 grayscale shadow-none' : ''}`}>
+                                <div className={`w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-[#0F172A] dark:text-white font-bold text-sm border-2 border-slate-200 dark:border-slate-600 group-hover:bg-[#D61F1F] group-hover:text-white group-hover:border-[#D61F1F] transition-colors ${!eligible ? 'bg-slate-300 dark:bg-slate-800 border-slate-400' : ''}`}>
                                     {donor.fullName.charAt(0)}
                                 </div>
                                 <div className="flex flex-col">
                                   {donor.fullName}
-                                  {!eligible && <span className="text-[10px] text-[#D61F1F] dark:text-red-400 italic mt-0.5">{t.table.ineligible}</span>}
+                                  {!eligible && <span className="text-[10px] text-red-600 dark:text-red-400 font-black uppercase tracking-tighter mt-0.5">{t.table.ineligible}</span>}
                                 </div>
                             </div>
                         </td>
@@ -194,7 +186,7 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                               <span>{donor.phone}</span>
                           </a>
                         ) : (
-                          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-400 border-2 border-slate-200 dark:border-slate-600 rounded-lg font-bold cursor-not-allowed" title={t.table.ineligibleReason}>
+                          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-500 border-2 border-slate-300 dark:border-slate-600 rounded-lg font-bold opacity-60" title={t.table.ineligibleReason}>
                               <WaitIcon />
                               <span>{t.table.ineligible}</span>
                           </div>
@@ -203,7 +195,7 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                         <td className="px-6 py-5 text-slate-800 dark:text-slate-300 font-bold font-mono text-xs">
                           <div className="flex flex-col">
                             {donor.lastDonation || '-'}
-                            {!eligible && <span className="text-[9px] text-[#D61F1F] dark:text-red-400 mt-1 max-w-[100px]">{t.table.ineligibleReason}</span>}
+                            {!eligible && <span className="text-[9px] text-[#D61F1F] dark:text-red-400 font-black mt-1 max-w-[120px]">{t.table.ineligibleReason}</span>}
                           </div>
                         </td>
                         <td className="px-8 py-5 max-w-xs truncate text-slate-500 dark:text-slate-400 font-bold" title={donor.notes}>{donor.notes || '-'}</td>
@@ -220,19 +212,25 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
             </table>
         </div>
 
-        {/* Mobile Card View (High Contrast) */}
+        {/* Mobile Card View (Frozen State) */}
         <div className="lg:hidden bg-slate-50 dark:bg-slate-900 p-4 space-y-4">
             {donors.length > 0 ? donors.map((donor, index) => {
               const eligible = isEligibleToDonate(donor.lastDonation);
               return (
-                <div key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 relative overflow-hidden group ${!eligible ? 'opacity-50 grayscale' : ''}`}>
+                <div key={`${donor.phone}-${index}`} className={`bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 relative overflow-hidden group transition-all duration-300 ${!eligible ? 'opacity-50 grayscale scale-[0.98] pointer-events-none' : ''}`}>
                     <div className={`absolute top-0 left-0 w-2 h-full ${eligible ? 'bg-[#D61F1F]' : 'bg-slate-400 dark:bg-slate-600'}`}></div>
                     
+                    {!eligible && (
+                      <div className="absolute top-2 right-2 z-10 flex items-center gap-1.5 px-3 py-1 bg-red-600 text-white rounded-full text-[10px] font-black shadow-lg">
+                        <WaitIcon />
+                        {t.table.ineligible}
+                      </div>
+                    )}
+
                     <div className="flex justify-between items-start mb-5 pl-4">
                         <div>
                             <h4 className="font-bold text-lg text-[#0F172A] dark:text-white leading-tight mb-2 flex items-center gap-2">
                               {donor.fullName}
-                              {!eligible && <WaitIcon />}
                             </h4>
                             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
@@ -258,7 +256,8 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                     </div>
 
                     {!eligible && (
-                      <div className="mb-4 pl-4 px-3 py-2 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-lg text-xs font-bold text-[#D61F1F] dark:text-red-400 text-center">
+                      <div className="mb-4 pl-4 px-4 py-3 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl text-xs font-black text-[#D61F1F] dark:text-red-400 text-center flex items-center justify-center gap-2">
+                        <WaitIcon />
                         {t.table.ineligibleReason}
                       </div>
                     )}
@@ -273,7 +272,7 @@ const DonorTable: React.FC<DonorTableProps> = ({ language, donors, totalDonors, 
                       </a>
                     ) : (
                       <div 
-                          className="flex items-center justify-center gap-2 w-full py-4 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-lg font-bold cursor-not-allowed border-2 border-dashed border-slate-400 dark:border-slate-600"
+                          className="flex items-center justify-center gap-2 w-full py-4 bg-slate-200 dark:bg-slate-700 text-slate-400 rounded-lg font-bold cursor-not-allowed border-2 border-dashed border-slate-300 dark:border-slate-600"
                       >
                           <WaitIcon />
                           <span>{t.table.ineligible}</span>
