@@ -175,14 +175,14 @@ export const DOWNLOAD_CONTENT = {
     title: "تطبيق Don de Sang CRA",
     description: "حمل تطبيقنا للوصول السريع إلى قاعدة بيانات المتبرعين في أي وقت.",
     vpnNote: "ملاحظة: في حال مواجهة أية مشكلات في الوصول لواجهة تحميل التطبيق، يرجى استخدام VPN مناسب لضمان الوصول.",
-    url: "#",
+    url: "https://apkpure.com/p/com.cra.dondesang",
     buttonText: "تحميل التطبيق (APK)"
   },
   fr: {
     title: "App Don de Sang CRA",
     description: "Téléchargez notre application pour un accès rapide aux donneurs à tout moment.",
     vpnNote: "Note : En cas de problèmes d'accès à l'interface de téléchargement, veuillez utiliser un VPN approprié.",
-    url: "#",
+    url: "https://apkpure.com/p/com.cra.dondesang",
     buttonText: "Télécharger (APK)"
   }
 };
